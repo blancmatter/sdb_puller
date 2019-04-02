@@ -1,0 +1,408 @@
+##
+##       Copyright (c) Telescope Technologies Limited, 2000
+##
+## File Name:
+##    Cil.map
+##
+## Purpose:
+##    Provide UDP addresses for CIL identified tasks.
+##
+## Description:
+##    Each line defines a potential connection that an entity may use.
+##    Lines with a # in column 1 are ignored.
+##
+##    All other lines are expected to be as follows :
+##    name, ip address, port number
+##
+##    Where: name = text id of entity (max 32 chars), not used.
+##           ip address = dotted quad IP address of node where the entity runs.
+##           port number = port number the entity sends/receives messages on.
+##
+##    Anything after the port number is ignored.
+##    White space is ignored.
+##    Lines must be <= 80 characters long.
+##    Last data line in file must be terminated with a line feed.
+##
+##    The data in this file should be in the same order as that in the
+##    Cil.h file.
+##
+## Authors:
+##    plw: Paul L. Wright (TTL)
+##    djm: Derek J. McKay (TTL)
+##
+## Version:
+##   $Id: Cil.map,v 1.54 2007/09/20 09:27:57 mjf Exp $
+##
+## History:
+##   $Log: Cil.map,v $
+##   Revision 1.54  2007/09/20 09:27:57  mjf
+##   Place TCS onto 'localhost' for now to enable development simulation.
+##
+##   Revision 1.53  2007/07/12 14:12:10  mjf
+##   Removal of hard-coded IP address.
+##
+##   Revision 1.52  2006/11/29 15:15:13  mjf
+##   Straggler sorted.
+##
+##   Revision 1.51  2006/11/29 15:09:52  mjf
+##   Run QNX software on 'localhost'.
+##
+##   Revision 1.50  2006/10/12 13:49:49  mjf
+##   For devqnx6-3.
+##
+##   Revision 1.49  2004/04/27 10:13:57  mjf
+##   For the development machine.
+##
+##   Revision 1.48  2003/12/08 14:43:37  mjf
+##   Changed to reflect no TCC & OCC on network at present.
+##
+##   Revision 1.47  2003/11/28 16:02:51  mjf
+##   Use hostnames as per normal telescope for simulator.
+##
+##   Revision 1.46  2003/03/20 15:39:27  mjf
+##   Addition of alternative RCS.
+##
+##   Revision 1.45  2003/02/04 16:00:38  mjf
+##   TCS & RCS tweaks.
+##
+##   Revision 1.44  2003/02/04 13:50:39  mjf
+##   Run software on devnode2, leaving devnode1 free for development.
+##
+##   Revision 1.43  2003/02/04 11:29:37  mjf
+##   Addition of entries for Nasmyth X+, Nasmyth X- and Prime focal
+##   focal stations, in terms of a de-rotator axis, a suite of auxiliary
+##   mechanisms and an autoguider.
+##
+##   Revision 1.42  2002/10/15 09:43:56  mjf
+##   Re-organisation of development network.
+##   Now 1:dev/scc/mcc, 2:sysadmin, 3:acc, 4:azm, 5:alt, 6:motor testing,
+##   7:cas/amn.
+##
+##   Revision 1.41  2002/07/09 12:48:06  mjf
+##   TCS and IPT changes.
+##
+##   Revision 1.40  2002/07/08 07:15:01  mjf
+##   Change of IP address for cassegrain, and port for IPT.
+##
+##   Revision 1.39  2002/06/11 18:19:02  djm
+##   Updated all IP addresses following recent reorganisation
+##   of the Development network.
+##
+##   Revision 1.38  2002/05/23 15:06:35  mjf
+##   Altitude sub-system onto devnode 5, cassegrain onto devnode6.
+##
+##   Revision 1.37  2002/05/17 14:22:15  mjf
+##   Place all on-mount software onto devnode7.
+##
+##   Revision 1.36  2002/01/23 17:09:38  mjf
+##   Placing of three main axis node software onto Devnode1 for now.
+##
+##   Revision 1.35  2001/12/06 11:42:01  mjf
+##   Moving of the Autoguider System process (AGS) from the MCC onto the
+##   autoguider computer.
+##
+##   Revision 1.34  2001/12/03 10:49:33  mjf
+##   Place azimuth software on devnode7, and auxiliary mechanisms on devnode6.
+##
+##   Revision 1.33  2001/11/30 15:38:47  sxf
+##   Corrected AGS address.
+##
+##   Revision 1.32  2001/11/30 15:34:07  sxf
+##   Added AGP, AGG and AGI for autoguider.
+##
+##   Revision 1.31  2001/07/24 09:09:27  mjf
+##   Placing of CM7 & CC7 on devnode7. Placing of CM8 & CC8 on devtcs.
+##
+##   Revision 1.30  2001/07/04 09:24:54  sxf
+##   Added AGG for Autoguider guide packets.
+##   NB This is just a "placeholder" to reserve a port for sending guide packets
+##   via raw UDP.
+##
+##   Revision 1.29  2001/04/03 11:45:44  rdl
+##   Modified Azimuth references to refer to devnode3 (for testing).
+##
+##   Revision 1.28  2001/03/26 17:28:44  mjf
+##   Addition of Primary Mirror Support processes.
+##
+##   Revision 1.27  2001/03/15 17:51:16  rdl
+##   Node 7 (212.219.10.227) changed to
+##   212.219.10.172.
+##
+##   Revision 1.26  2001/03/15 17:30:15  jdm
+##   Node 4 (212.219.10.172) changed to
+##   212.219.10.227.
+##
+##   Revision 1.25  2001/03/05 13:30:17  mjf
+##   Renaming of AMx CIL IDs to be OMx (optical).
+##
+##   Revision 1.24  2001/03/04 14:22:32  rdl
+##   Modified IP addresses for Auxiliary Mechanism to 212.219.10.227.
+##
+##   Revision 1.23  2001/03/02 16:48:07  mjf
+##   Renaming of Auxiliary Mechanism Node entries from AM? to XM?, as
+##   requested by RDL.
+##
+##   Revision 1.22  2001/03/02 09:49:13  mjf
+##   Addition of Computer Monitoring Tasks.
+##
+##   Revision 1.21  2001/02/07 13:37:30  pxh
+##   Corrected IP address for Devnode5 on development network.
+##
+##   Revision 1.20  2000/12/11 18:24:58  mjf
+##   Addition of Test Scripting Tool (TST). Also correction to IPT port no.
+##
+##   Revision 1.19  2000/11/01 17:12:40  asp
+##   Computer Monitoring CM task added
+##
+##   Revision 1.18  2000/10/20 11:59:29  djm
+##   Changed AMN addresses from devnode1 to devnode5.
+##
+##   Revision 1.17  2000/10/10 08:35:16  mjf
+##   Addition of Computer Monitoring Tasks (CMT).
+##
+##   Revision 1.16  2000/09/26 14:03:20  pxh
+##   Changed CIL entries for Elevation and Cassegrain Control Nodes from Devnode1 to Devnode3 and Devnode6 respectively.
+##
+##   Revision 1.15  2000/09/19 07:36:07  mjf
+##   Addition of Engineering Reporting Tasks, Autoguider, and major changes
+##   to ACNs. Also extensive reordering.
+##
+##   Revision 1.14  2000/08/23 16:49:38  asp
+##   New entries added for DA, SFR, AI, UI and MIT. Old UI entries renamed to EI.
+##
+##   Revision 1.13  2000/07/14 16:28:41  djm
+##   Added CIL ID for IUCAA TCS prototype.
+##
+##   Revision 1.12  2000/07/05 09:49:28  djm
+##   Added entry for OCS.
+##
+##   Revision 1.11  2000/06/20 14:12:35  djm
+##   Moved AZR and AZC to Devnode4
+##
+##   Revision 1.10  2000/06/02 15:45:47  djm
+##   Added LOG CIL ID in a new section for miscellaneous services.
+##
+##   Revision 1.9  2000/05/31 14:23:48  djm
+##   Major rearrangement of CIL addresses.
+##
+##   Revision 1.8  2000/05/17 12:16:19  djm
+##   Changed CIL entries for TU5, TU6 and TU7 from node 4 to node 1.
+##
+##   Revision 1.7  2000/04/18 17:39:44  djm
+##   Added additional test units 0-4 on devnode1 and 5-9 on devnode4.
+##
+##   Revision 1.6  2000/04/14 08:11:05  djm
+##   Fixed formatting error.
+##
+##   Revision 1.5  2000/04/13 11:59:21  djm
+##   Improved comment header block.
+##
+##
+##
+#
+# MCS (13000 - 13009) - MCP
+#
+MCP,  localhost, 13001   # Master Control Process
+CHB,  localhost, 13002   # Continuous heartbeat (part of MCP)
+UI1,  localhost, 13003   # Un-interruptable power-supply Interface task 1
+UI2,  localhost, 13004   # Un-interruptable power-supply Interface task 2
+AI1,  localhost, 13005   # Addressable power-switch Interface task 1
+AI2,  localhost, 13006   # Addressable power-switch Interface task 2
+AI3,  localhost, 13007   # Addressable power-switch Interface task 3
+MIT,  localhost, 13008   # Modem Interfce Task
+#
+# MCS (13010 - 13019) - remainder 
+#
+MCB,  localhost, 13010   # Master Command Broker
+SDB,  localhost, 13011   # Status Database
+SFR,  localhost, 13012   # Status database File Recovery task
+SPT,  localhost, 13013   # Services PLC Task
+EPT,  localhost, 13014   # Enclosure PLC Task
+EPS,  localhost, 13015   # Enclosure PLC Simulator
+WMS,  localhost, 13016   # Weather Monitoring System
+AVS,  localhost, 13017   # Audio-Visual System
+#
+# TCS (13020 - 13029)
+#
+TCS,  localhost, 13021   # Telescope Control System - devtcs
+RCS,  localhost, 13050   # Robotic Control System
+OCS,  localhost, 13023   # Observatory Control System
+AGS,  localhost, 13024   # Autoguider system
+AGP,  localhost, 13025   # Autoguider guide packets
+AGG,  localhost, 13026   # Autoguider guide process
+AGI,  localhost, 13027   # Autoguider graphical interface
+#
+# ECI (13030 - 13034)
+#
+EI0,  localhost, 13030   # Engineering Control Interface (session 0)
+EI1,  localhost, 13031   # Engineering Control Interface (session 1)
+EI2,  localhost, 13032   # Engineering Control Interface (session 2)
+EI3,  localhost, 13033   # Engineering Control Interface (session 3)
+EI4,  localhost, 13034   # Engineering Control Interface (session 4)
+#
+# ERT (13035 - 13039)
+#
+ER0,  localhost, 13035   # Engineering Reporting Task (session 0)
+ER1,  localhost, 13036   # Engineering Reporting Task (session 1)
+ER2,  localhost, 13037   # Engineering Reporting Task (session 2)
+ER3,  localhost, 13038   # Engineering Reporting Task (session 3)
+ER4,  localhost, 13039   # Engineering Reporting Task (session 4)
+#
+# Axis/mechanism hardware control nodes (13100 - 13199)
+#
+AZC,  localhost, 13111   # Azimuth ACN Comms-In
+AZN,  localhost, 13112   # Azimuth ACN Control Node
+AZS,  localhost, 13113   # Azimuth ACN Comms-Out
+AZR,  localhost, 13114   # Azimuth ACN SDB Reporting
+AZT,  localhost, 13115   # Azimuth ACN Test (formerly Simulator AZS)
+AZL,  localhost, 13116   # Azimuth ACN Logger
+#
+ELC,  localhost, 13121   # Elevation ACN Comms-In
+ELN,  localhost, 13122   # Elevation ACN Control Node
+ELS,  localhost, 13123   # Elevation ACN Comms-Out
+ELR,  localhost, 13124   # Elevation ACN SDB Reporting
+ELT,  localhost, 13125   # Elevation ACN Test (formerly Simulator ELS)
+ELL,  localhost, 13126   # Elevation ACN Logger
+# 
+CSC,  localhost, 13131   # Cassegrain ACN Comms-In
+CSN,  localhost, 13132   # Cassegrain ACN Control Node
+CSS,  localhost, 13133   # Cassegrain ACN Comms-Out
+CSR,  localhost, 13134   # Cassegrain ACN SDB Reporting
+CST,  localhost, 13135   # Cassegrain ACN Test (formerly Simulator CSS)
+CSL,  localhost, 13136   # Cassegrain ACN Logger
+# N1? = 13140-13149
+# N2? = 13150-13159
+# PR? = 13160-13169
+OMC,  localhost, 13171   # Auxiliary (Optical) Mechanism Comms-In
+OMN,  localhost, 13172   # Auxiliary (Optical) Mechanism Control Node
+OMS,  localhost, 13173   # Auxiliary (Optical) Mechanism Comms-Out
+OMR,  localhost, 13174   # Auxiliary (Optical) Mechanism SDB Reporting
+OMT,  localhost, 13175   # Auxiliary (Optical) Mechanism Test (formerly Simulator AMS)
+OML,  localhost, 13176   # Auxiliary (Optical) Mechanism Logger
+#
+MSC,  localhost, 13181   # Primary Mirror Support Comms-In
+MSN,  localhost, 13182   # Primary Mirror Support Control Node
+MSS,  localhost, 13183   # Primary Mirror Support Comms-Out
+MSR,  localhost, 13184   # Primary Mirror Support SDB Reporting
+MST,  localhost, 13185   # Primary Mirror Support Test (formerly Simulator AMS)
+MSL,  localhost, 13186   # Primary Mirror Support Logger
+# 
+NDC,  localhost, 13401   # Nasmyth X+ (drive side) ACN Comms-In
+NDN,  localhost, 13402   # Nasmyth X+ (drive side) ACN Control Node
+NDS,  localhost, 13403   # Nasmyth X+ (drive side) ACN Comms-Out
+NDR,  localhost, 13404   # Nasmyth X+ (drive side) ACN SDB Reporting
+NDT,  localhost, 13405   # Nasmyth X+ (drive side) ACN Test
+NDL,  localhost, 13406   # Nasmyth X+ (drive side) ACN Logger
+# 
+NWC,  localhost, 13411   # Nasmyth X- (wrap side) ACN Comms-In
+NWN,  localhost, 13412   # Nasmyth X- (wrap side) ACN Control Node
+NWS,  localhost, 13413   # Nasmyth X- (wrap side) ACN Comms-Out
+NWR,  localhost, 13414   # Nasmyth X- (wrap side) ACN SDB Reporting
+NWT,  localhost, 13415   # Nasmyth X- (wrap side) ACN Test
+NWL,  localhost, 13416   # Nasmyth X- (wrap side) ACN Logger
+# 
+PFC,  localhost, 13421   # Prime Focus ACN Comms-In
+PFN,  localhost, 13422   # Prime Focus ACN Control Node
+PFS,  localhost, 13423   # Prime Focus ACN Comms-Out
+PFR,  localhost, 13424   # Prime Focus ACN SDB Reporting
+PFT,  localhost, 13425   # Prime Focus ACN Test
+PFL,  localhost, 13426   # Prime Focus ACN Logger
+# 
+DOC,  localhost, 13401   # Nasmyth X+ Auxiliary Mechanisms Comms-In
+DON,  localhost, 13402   # Nasmyth X+ Auxiliary Mechanisms Control Node
+DOS,  localhost, 13403   # Nasmyth X+ Auxiliary Mechanisms Comms-Out
+DOR,  localhost, 13404   # Nasmyth X+ Auxiliary Mechanisms SDB Reporting
+DOT,  localhost, 13405   # Nasmyth X+ Auxiliary Mechanisms Test
+DOL,  localhost, 13406   # Nasmyth X+ Auxiliary Mechanisms Logger
+# 
+WOC,  localhost, 13411   # Nasmyth X- Auxiliary Mechanisms Comms-In
+WON,  localhost, 13412   # Nasmyth X- Auxiliary Mechanisms Control Node
+WOS,  localhost, 13413   # Nasmyth X- Auxiliary Mechanisms Comms-Out
+WOR,  localhost, 13414   # Nasmyth X- Auxiliary Mechanisms SDB Reporting
+WOT,  localhost, 13415   # Nasmyth X- Auxiliary Mechanisms Test
+WOL,  localhost, 13416   # Nasmyth X- Auxiliary Mechanisms Logger
+# 
+POC,  localhost, 13421   # Prime Focus Auxiliary Mechanisms Comms-In
+PON,  localhost, 13422   # Prime Focus Auxiliary Mechanisms Control Node
+POS,  localhost, 13423   # Prime Focus Auxiliary Mechanisms Comms-Out
+POR,  localhost, 13424   # Prime Focus Auxiliary Mechanisms SDB Reporting
+POT,  localhost, 13425   # Prime Focus Auxiliary Mechanisms Test
+POL,  localhost, 13426   # Prime Focus Auxiliary Mechanisms Logger
+#
+DGS,  localhost, 13431   # Nasmyth X+ Autoguider system
+DGP,  localhost, 13432   # Nasmyth X+ Autoguider guide packets
+DGG,  localhost, 13433   # Nasmyth X+ Autoguider guide process
+DGI,  localhost, 13434   # Nasmyth X+ Autoguider graphical interface
+# 
+WGS,  localhost, 13441   # Nasmyth X- Autoguider system
+WGP,  localhost, 13442   # Nasmyth X- Autoguider guide packets
+WGG,  localhost, 13443   # Nasmyth X- Autoguider guide process
+WGI,  localhost, 13444   # Nasmyth X- Autoguider graphical interface
+#
+PGS,  localhost, 13451   # Prime Focus Autoguider system
+PGP,  localhost, 13452   # Prime Focus Autoguider guide packets
+PGG,  localhost, 13453   # Prime Focus Autoguider guide process
+PGI,  localhost, 13454   # Prime Focus Autoguider graphical interface
+#
+# Test units (13200 - 13299)
+#
+TU0,  localhost, 13200   # Test Unit 0 (for testing/debugging only)
+TU1,  localhost, 13201   # Test Unit 1 (for testing/debugging only)
+TU2,  localhost, 13202   # Test Unit 2 (for testing/debugging only)
+TU3,  localhost, 13203   # Test Unit 3 (for testing/debugging only)
+TU4,  localhost, 13204   # Test Unit 4 (for testing/debugging only)
+TU5,  localhost, 13205   # Test Unit 5 (for testing/debugging only)
+TU6,  localhost, 13206   # Test Unit 6 (for testing/debugging only)
+TU7,  localhost, 13207   # Test Unit 7 (for testing/debugging only)
+TU8,  localhost, 13208   # Test Unit 8 (for testing/debugging only)
+TU9,  localhost, 13209   # Test Unit 9 (for testing/debugging only)
+TES,  localhost, 13210   # Test Echo Server (for testing only)
+TMB,  localhost, 13211   # Test Message Broker (for testing only)
+IPT,  localhost, 13050   # IUCAA Prototype TCS (for testing only)
+TST,  localhost, 13213   # Test Scripting Tool (for testing only)
+#
+# Miscellaneous services
+#
+LOG,  localhost,   514   # System logging (syslogd)
+#
+# Data Analysis Tool (13040-13049) 
+#
+DA0,  localhost, 13040   # Data Analysis Tool (session 0)
+DA1,  localhost, 13041   # Data Analysis Tool (session 1)
+DA2,  localhost, 13042   # Data Analysis Tool (session 2)
+DA3,  localhost, 13043   # Data Analysis Tool (session 3)
+DA4,  localhost, 13044   # Data Analysis Tool (session 4)
+DA5,  localhost, 13045   # Data Analysis Tool (session 5)
+DA6,  localhost, 13046   # Data Analysis Tool (session 6)
+DA7,  localhost, 13047   # Data Analysis Tool (session 7)
+DA8,  localhost, 13048   # Data Analysis Tool (session 8)
+DA9,  localhost, 13049   # Data Analysis Tool (session 9)
+#
+# Computer Monitoring Task (13300-13309) 
+#
+CM0,  localhost, 13300   # Computer Monitoring Task (???)
+CM1,  localhost, 13301   # Computer Monitoring Task (mcc)
+CM2,  localhost, 13302   # Computer Monitoring Task (scc)
+CM3,  localhost, 13303   # Computer Monitoring Task (acc)
+CM4,  localhost, 13304   # Computer Monitoring Task (azm)
+CM5,  localhost, 13305   # Computer Monitoring Task (alt)
+CM6,  localhost, 13306   # Computer Monitoring Task (cas)
+CM7,  localhost, 13307   # Computer Monitoring Task (amn)
+CM8,  localhost, 13308   # Computer Monitoring Task (tcs)
+CM9,  localhost, 13309   # Computer Monitoring Task (???)
+#
+# Computer Control Task (13310-13319) 
+#
+CC0,  localhost, 13310   # Computer Control Task (???)
+CC1,  localhost, 13311   # Computer Control Task (mcc)
+CC2,  localhost, 13312   # Computer Control Task (scc)
+CC3,  localhost, 13313   # Computer Control Task (acc)
+CC4,  localhost, 13314   # Computer Control Task (azm)
+CC5,  localhost, 13315   # Computer Control Task (alt)
+CC6,  localhost, 13316   # Computer Control Task (cas)
+CC7,  localhost, 13317   # Computer Control Task (amn)
+CC8,  localhost, 13318   # Computer Control Task (tcs)
+CC9,  localhost, 13319   # Computer Control Task (???)
+#
+# EOF
+

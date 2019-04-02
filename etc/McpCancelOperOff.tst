@@ -1,0 +1,2 @@
+sysreq, SYSREQ_REQ_CANCEL_OPER_OFF
+

@@ -1,0 +1,31 @@
+#! /bin/sh
+./EtcStartup
+echo "Copying 'etc' files for Yunnan Telescope"
+cp -f CilYn.map Cil.map
+cp -f LogYn.cfg Log.cfg
+cp -f PmmYn.cfg Pmm.cfg
+cp -f AcnYnAzimuth.cfg    AcnAzimuth.cfg 
+cp -f AcnYnAltitude.cfg   AcnAltitude.cfg 
+cp -f AcnYnCassegrain.cfg AcnCassegrain.cfg 
+cp -f AcnYnNasMinus.cfg   AcnNasMinus.cfg 
+cp -f AmnYnAuxMech.cfg    AmnAuxMech.cfg 
+cp -f AmnYnMirror.cfg     AmnMirror.cfg 
+cp -f IetYn.cfg           Iet.cfg 
+cp -f SpiYn.cfg           Spi.cfg 
+cp -f WmsYn.cfg           Wms.cfg 
+cp -f DatYn.cfg           Dat.cfg 
+cp -f AggYn.cfg           Agg.cfg 
+cp -f CmtYnScc.cfg        CmtScc.cfg
+cp -f CmtYnMcc.cfg        CmtMcc.cfg
+cp -f CmtYnAcc.cfg        CmtAcc.cfg
+cp -f CmtYnAzm.cfg        CmtAzm.cfg
+cp -f CmtYnAlt.cfg        CmtAlt.cfg
+cp -f CmtYnRot.cfg        CmtRot.cfg
+cp -f CmtYnAmn.cfg        CmtAmn.cfg
+cp -f CmtYnOcc.cfg        CmtOcc.cfg
+cp -f CmtYnSys.cfg        CmtSys.cfg
+cp -f OhgYn.cfg           Ohg.cfg
+cp -f FtpServerYn.cfg     FtpServer.cfg
+./EtcCleanup
+echo "Done"
+

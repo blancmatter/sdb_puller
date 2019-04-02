@@ -1,0 +1,66 @@
+#! /bin/sh
+################################################################################
+##
+##       Copyright (c) Telescope Technologies Limited (TTL) 2003.
+## 
+## Filename: 
+##    EtcChAttr
+##
+## Purpose:
+##    Shell script to set the attributes of a released file. The first parameter
+##    is the directory where the file(es) is/are located, and subsequent 
+##    parameter(s) is/are the file(es).
+##
+## Description:
+##    N/A
+##
+## Traceability to Software Design: 
+##    N/A
+##
+## Authors:
+##    mjf : Martyn J. Ford (TTL)
+##
+## Version:
+##    $Id: EtcChAttr,v 0.4 2007/10/16 14:25:15 mjf Exp $
+##
+## History:
+##    $Log: EtcChAttr,v $
+##    Revision 0.4  2007/10/16 14:25:15  mjf
+##    Move '#! /bin/sh' to the first line of the file.
+##
+##    Revision 0.3  2006/10/12 15:31:40  mjf
+##    Only change attributes on a file if it exists to prevent unwanted errors.
+##
+##    Revision 0.2  2003/03/11 15:05:47  mjf
+##    Set attributes directly, rather than with a sysadmin script.
+##
+##    Revision 0.1  2003/03/10 14:34:57  mjf
+##    Initial revision.
+##
+##
+################################################################################
+#
+# Usage if no parameters supplied
+#
+if test $# -eq 0
+then
+   echo Usage : ${0##*/} "<directory>" "<files...>"
+   echo
+   exit 0
+fi
+#
+# Loop through files in supplied directory
+#
+for file in $*
+do
+   # If current argument is not the directory name
+   if test $file != $1
+   then
+      if test -f $1/$file
+      then
+         chgrp ttl $1/$file
+         chown ttl $1/$file
+      fi
+   fi
+done
+

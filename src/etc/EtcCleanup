@@ -1,0 +1,59 @@
+#! /bin/sh
+echo "Removing unwanted configuration files"
+rm -f *Lt*.cfg *Lt*.map *Lt*.qli EtcLt
+rm -f *It*.cfg *It*.map *It*.qli EtcIt
+rm -f *F1*.cfg *F1*.map *F1*.qli EtcF1
+rm -f *F2*.cfg *F2*.map *F2*.qli EtcF2
+rm -f *Yn*.cfg *Yn*.map *Yn*.qli EtcYn
+#
+# Set all the files listed in 'EtcMaintain' to be maintainable.
+#
+echo "Setting attributes for Maintainer configuration files"
+# use i value for argument number : 1=directory, 2=filename
+let i=1
+# loop around getting arguments from file-list
+for arg in `cat EtcMaintain`
+do
+   # if directory argument read...
+   if test i -eq 1
+   then
+      # take copy in label 'directory' and increment counter
+      directory=$arg
+      let i=i+1
+   # if filename argument read...
+   elif test i -eq 2
+   then
+      # take copy in label 'filename' and reset counter
+      filename=$arg
+      let i=1
+      # set the appropriate attributes for the file
+      ./EtcChAttrMaintain ../$directory $filename
+   fi
+done
+#
+# Set all the files listed in 'EtcRoot' to be root privity.
+#
+echo "Setting attributes for root privity"
+# use i value for argument number : 1=directory, 2=filename
+let i=1
+# loop around getting arguments from file-list
+for arg in `cat EtcRoot`
+do
+   # if directory argument read...
+   if test i -eq 1
+   then
+      # take copy in label 'directory' and increment counter
+      directory=$arg
+      let i=i+1
+   # if filename argument read...
+   elif test i -eq 2
+   then
+      # take copy in label 'filename' and reset counter
+      filename=$arg
+      let i=1
+      # set the appropriate attributes for the file
+      ./EtcChAttrRoot ../$directory $filename
+   fi
+done
+echo "Done"
+

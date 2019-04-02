@@ -1,0 +1,2 @@
+sysreq, SYSREQ_REQ_ACTIVATE
+

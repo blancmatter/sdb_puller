@@ -1,0 +1,2 @@
+sysreq, SYSREQ_REQ_PARTIAL_STARTUP
+

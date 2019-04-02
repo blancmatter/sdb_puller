@@ -1,0 +1,1 @@
+sysreq, SYSREQ_REQ_FORCE_OPER_ON

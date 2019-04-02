@@ -1,0 +1,25 @@
+#! /bin/sh
+./EtcStartup
+echo "Copying 'etc' files for Development Network"
+#cp -f CilSim.map Cil.map
+#cp -f LogSim.cfg Log.cfg
+#cp -f PmmSim.cfg Pmm.cfg
+cp -f SimAzimuth.cfg    AcnAzimuth.cfg 
+cp -f SimAltitude.cfg   AcnAltitude.cfg 
+cp -f SimCassegrain.cfg AcnCassegrain.cfg 
+cp -f SimAuxMech.cfg    AmnAuxMech.cfg 
+cp -f SimMirror.cfg     AmnMirror.cfg 
+#cp -f CmtSimScc.cfg       CmtScc.cfg
+#cp -f CmtSimMcc.cfg       CmtMcc.cfg
+#cp -f CmtSimAcc.cfg       CmtAcc.cfg
+#cp -f CmtSimAzm.cfg       CmtAzm.cfg
+#cp -f CmtSimAlt.cfg       CmtAlt.cfg
+#cp -f CmtSimCas.cfg       CmtCas.cfg
+#cp -f CmtSimAmn.cfg       CmtAmn.cfg
+#cp -f CmtSimOcc.cfg       CmtOcc.cfg
+#cp -f CmtSimSys.cfg       CmtSys.cfg
+cp -f OhgDaytime.cfg     Ohg.cfg
+./EtcCleanup
+chgrp develop ../bin ../etc ../util ../lib ../include
+echo "Done"
+

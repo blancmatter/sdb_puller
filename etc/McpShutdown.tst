@@ -1,0 +1,2 @@
+sysreq, MCP_SYSREQ_REQ_FULL_SHUTDOWN
+

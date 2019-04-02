@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Run Ags with CIL id WGS and guide process WGG,
+# pass all other parameters unchanged.
+Ags -cil WGS -guide WGG $*
+

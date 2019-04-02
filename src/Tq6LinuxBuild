@@ -1,0 +1,262 @@
+################################################################################
+##
+##       Copyright (c) Telescope Technologies Limited (TTL) 2004.
+## 
+## Filename: 
+##    Tq6LinuxBuild
+##
+## Purpose:
+##    Shell script for building TTL Linux software.
+##
+## Description:
+##    N/A
+##
+## Traceability to Software Design: 
+##    N/A
+##
+## Authors:
+##    mjf : Martyn J. Ford (TTL)
+##
+## Version:
+##    $Id: Tq6LinuxBuild,v 0.10 2008/02/20 10:51:09 mjf Exp $
+##
+## History:
+##    $Log: Tq6LinuxBuild,v $
+##    Revision 0.10  2008/02/20 10:51:09  mjf
+##    Addition of BCI - Boltwood Cloud Interface.
+##
+##    Revision 0.9  2007/11/09 15:59:29  mjf
+##    Also build AGS.
+##
+##    Revision 0.8  2007/10/09 14:39:43  mjf
+##    Re-order building of STD and SMU, and correction to copying of output
+##    product.
+##
+##    Revision 0.7  2007/09/25 13:42:58  mjf
+##    Build SmuRecv utility from SMU package.
+##
+##    Revision 0.6  2007/08/30 11:24:18  mjf
+##    Addition of HtiUnits utility.
+##
+##    Revision 0.5  2007/08/22 13:33:22  mjf
+##    *** empty log message ***
+##
+##    Revision 0.4  2006/07/12 11:01:13  mjf
+##    Don't attempt to build Wrapper Function Library for Linux.
+##
+##    Revision 0.3  2005/06/20 15:32:16  mjf
+##    Addition of WFL.
+##
+##    Revision 0.2  2005/06/17 13:10:00  mjf
+##    Addition of HTI, SDB, STD and HTG.
+##
+##    Revision 0.1  2004/04/27 10:58:46  mjf
+##    Initial revision.
+##
+##
+################################################################################
+#! /bin/sh
+#
+# Sign-on
+#
+#
+# 
+echo
+echo Tq6LinuxBuild
+echo TTL script for building the Linux core system software
+echo
+#
+# Work out where we are and where the root path is, eg /opt/ttl
+#
+here=$PWD
+cd ../
+ROOTPATH=$PWD
+cd $here
+echo Current directory is $here, root for build is $ROOTPATH
+#
+# Create directories 'bin', 'etc', 'include', 'lib', 'util', 'tdl' 
+#
+mkdir $ROOTPATH/bin
+mkdir $ROOTPATH/etc
+mkdir $ROOTPATH/include
+mkdir $ROOTPATH/lib
+mkdir $ROOTPATH/util
+mkdir $ROOTPATH/tdl
+#
+# Copy miscellaneous files to /etc
+#
+echo "**********************************************************************"
+echo "   Copying Miscellaneous Files (ETC)"
+echo "**********************************************************************"
+cd etc
+cp -f `cat Etc.lis` $ROOTPATH/etc
+cd ..
+#
+# Copy public include files
+#
+echo "**********************************************************************"
+echo "   Building core system software"
+echo "**********************************************************************"
+echo "   Copying Include Files"
+echo "**********************************************************************"
+cp -f include/* $ROOTPATH/include
+#
+# Build common utility libraries
+#
+### echo "**********************************************************************"
+### echo "   Wrapper Function Library (WFL)"
+### echo "**********************************************************************"
+### cd wfl
+### make -f Wfl.mak clean
+### make -f Wfl.mak
+### cp -f Wfl.lib $ROOTPATH/lib
+### cd ..
+echo "**********************************************************************"
+echo "   Configuration File Utilities (CFU)"
+echo "**********************************************************************"
+cd cfu
+make -f Cfu.mak clean
+make -f Cfu.mak
+cp -f Cfu.lib $ROOTPATH/lib
+cd ..
+echo "**********************************************************************"
+echo "   Time Utilities (TIM)"
+echo "**********************************************************************"
+cd tim
+make -f Tim.mak clean
+make -f Tim.mak
+cp -f Tim.lib $ROOTPATH/lib
+cd ..
+echo "**********************************************************************"
+echo "   System Logging (LOG)"
+echo "**********************************************************************"
+cd log
+make -f Log.mak clean
+make -f Log.mak
+cp -f Log.lib $ROOTPATH/lib
+cd ..
+echo "**********************************************************************"
+echo "   Command Line Utilities (CLU)"
+echo "**********************************************************************"
+cd clu
+make -f Clu.mak clean
+make -f Clu.mak
+cp -f Clu.lib $ROOTPATH/lib
+cd ..
+echo "**********************************************************************"
+echo "   Communications Interface Library (CIL)"
+echo "**********************************************************************"
+cd cil
+make -f Cil.mak clean
+make -f Cil.mak
+cp -f Cil.lib $ROOTPATH/lib
+cp -f testclient $ROOTPATH/util
+cp -f testserver $ROOTPATH/util
+cd ..
+echo "**********************************************************************"
+echo "   Header-to-ID Library (HTI)"
+echo "**********************************************************************"
+cd hti
+make -f Hti.mak clean
+make -f Hti.mak
+cp -f Hti.lib $ROOTPATH/lib
+cp -f HtiHdr2Id    $ROOTPATH/util
+cp -f HtiFixRecLen $ROOTPATH/util
+cp -f HtiGenBinary $ROOTPATH/util
+cp -f HtiReport    $ROOTPATH/util
+cp -f HtiList      $ROOTPATH/util
+cp -f HtiUnits     $ROOTPATH/util
+cd ..
+echo "**********************************************************************"
+echo "   Status Database Library (SDB)"
+echo "**********************************************************************"
+cd sdb
+make -f Sdb.mak clean
+make -f Sdb.mak
+cp -f Sdb.lib $ROOTPATH/lib
+cd ..
+echo "**********************************************************************"
+echo "   SDB Data Dump (STD)"
+echo "**********************************************************************"
+cd std
+make -f Std.mak clean
+make -f Std.mak
+cp -f Std.lib $ROOTPATH/lib
+cp -f Std $ROOTPATH/util
+cd ..
+echo "**********************************************************************"
+echo "   TTL Development Library (TDL)"
+echo "**********************************************************************"
+cd tdl
+make -f Tdl.mak clean
+make -f Tdl.mak
+cp -f Tdl.lib $ROOTPATH/lib
+cp -f `cat TdlDistribution.lis` $ROOTPATH/tdl
+cd ..
+#
+# Build Linux MCS applications
+#
+echo "**********************************************************************"
+echo "   Computer Monitoring Task (CMT)"
+echo "**********************************************************************"
+cd cmt
+make -f Cmt.mak clean
+make -f Cmt.mak
+cp -f Cmt $ROOTPATH/bin
+cd ..
+echo "**********************************************************************"
+echo "   Computer Control Task (CCT)"
+echo "**********************************************************************"
+cd cct
+make -f Cct.mak clean
+make -f Cct.mak
+cp -f Cct $ROOTPATH/bin
+cd ..
+echo "**********************************************************************"
+echo "   SDB to MySQL Utility (SMU)"
+echo "**********************************************************************"
+cd smu
+make -f Smu.mak clean
+make -f Smu.mak
+cp -f SmuRecv $ROOTPATH/bin
+cd ..
+echo "**********************************************************************"
+echo "   Boltwood Cloud Interface (BCI)"
+echo "**********************************************************************"
+cd bci
+make -f Bci.mak clean
+make -f Bci.mak
+cp -f Bci $ROOTPATH/bin
+cd ..
+echo "**********************************************************************"
+echo "   HeaderToId Table Generation (HTG)"
+echo "**********************************************************************"
+cd htg
+make -f Htg.mak clean
+make -f Htg.mak
+cp -f IdTable.idx $ROOTPATH/etc
+cp -f IdTable.idb $ROOTPATH/etc
+cp -f UnitsTable.idx $ROOTPATH/etc
+cp -f UnitsTable.idb $ROOTPATH/etc
+cp -f StatusTable.idx $ROOTPATH/etc
+cp -f StatusTable.idb $ROOTPATH/etc
+cp -f FullTable.idx $ROOTPATH/etc
+cp -f FullTable.idb $ROOTPATH/etc
+cp -f EnumTable.idx $ROOTPATH/etc
+cp -f EnumTable.idb $ROOTPATH/etc
+cd ..
+#
+# Build Autoguider components 
+#
+echo "**********************************************************************"
+echo "   Autoguider Service Process (AGS)"
+echo "**********************************************************************"
+cd ags/ags
+make -f Ags.mak clean
+make -f Ags.mak
+cp -f Ags $ROOTPATH/bin
+cd ../..
+echo "**********************************************************************"
+echo "   Linux build process completed"
+echo "**********************************************************************"
+

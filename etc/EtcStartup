@@ -1,0 +1,19 @@
+#! /bin/sh
+#
+# Initially set all files to be owned by TTL by default.
+#
+echo "Setting all file ownership to TTL initially"
+# all files in the 'bin' directory
+directory=../bin
+./EtcChAttr $directory `ls -1 $directory`
+# all files in the 'bin/EciGraphics' directory
+directory=../bin/EciGraphics
+./EtcChAttr $directory `ls -1 $directory`
+# all files in the 'etc' directory
+directory=../etc
+./EtcChAttr $directory `ls -1 $directory`
+# all files in the 'util' directory
+directory=../util
+./EtcChAttr $directory `ls -1 $directory`
+echo "Done"
+
