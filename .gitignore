@@ -1,4 +1,3 @@
 *.tar
 201801/
 .vagrant/
-Vagrantfile

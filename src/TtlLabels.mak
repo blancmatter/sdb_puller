@@ -1,8 +1,8 @@
 ################################################################################
 ##
 ##       Copyright (c) Telescope Technologies Limited (TTL) 2000.
-## 
-## Filename: 
+##
+## Filename:
 ##    TtlLabels.mak
 ##
 ## Purpose:
@@ -11,7 +11,7 @@
 ## Description:
 ##    N/A
 ##
-## Traceability to Software Design: 
+## Traceability to Software Design:
 ##    -
 ##
 ## Authors:
@@ -84,10 +84,10 @@
 ## Locations of directories - assume Linux and then change if not.
 ##
 
-TTL_BASE                   = /ttl/sw
+TTL_BASE                   = /vagrant
 
 ifeq ($(SYSNAME),nto)
-TTL_BASE                   = /ttl/sw
+TTL_BASE                   = /vagrant
 endif
 
 ifeq ($(SYSNAME),qnx4)
@@ -137,9 +137,9 @@ TTL_CGW_LB                 = ar
 ##    -za          Disable language extensions.
 ##    -ze          Enable language extensions.
 ##    -zu          Don't assume that SS contains the segment of DGROUP.
-## 
+##
 ## Linux :-
-##    
+##
 
 ### Default Options ###
 TTL_QNX_CC_OPT             = -wx -we -I $(TTL_INCLUDE) -za -Wc,-ei
@@ -172,12 +172,12 @@ TTL_CGW_CC_OPT_HW_ISR      = -pedantic -I $(TTL_INCLUDE)
 ## QNX :-
 ##    -g2          Produce symbolic information for debugger.
 ##    -T1          Set privity level 1.
-## 
+##
 ## Linux :-
-##    
+##
 
 ### Default Options ###
-TTL_QNX_LN_OPT           = 
+TTL_QNX_LN_OPT           =
 TTL_LNX_LN_OPT           = -pedantic -ansi -lm -lrt
 TTL_NTO_LN_OPT           = -static -ansi -lsocket -lm
 TTL_CGW_LN_OPT           = -pedantic -ansi -lm
@@ -185,7 +185,7 @@ TTL_CGW_LN_OPT           = -pedantic -ansi -lm
 ### Privity Level 1 Options ###
 TTL_QNX_LN_OPT_PRIVITY_1 = -T1
 TTL_LNX_LN_OPT_PRIVITY_1 = -pedantic -ansi -lm -lrt
-TTL_NTO_LN_OPT_PRIVITY_1 = -ansi -Bstatic -lsocket -lm 
+TTL_NTO_LN_OPT_PRIVITY_1 = -ansi -Bstatic -lsocket -lm
 TTL_CGW_LN_OPT_PRIVITY_1 = -pedantic -ansi -lm
 
 
@@ -194,9 +194,9 @@ TTL_CGW_LN_OPT_PRIVITY_1 = -pedantic -ansi -lm
 ##
 ## QNX :-
 ##    -n           Always create new library.
-## 
+##
 ## Linux :-
-##    
+##
 
 TTL_QNX_LB_OPT            = -n
 TTL_LNX_LB_OPT            = -r
@@ -211,7 +211,7 @@ TTL_CGW_LB_OPT            = -r
 TTL_QNX_LB_DIV            = +
 TTL_LNX_LB_DIV            =
 TTL_NTO_LB_DIV            =
-TTL_CGW_LB_DIV            = 
+TTL_CGW_LB_DIV            =
 
 
 ##
@@ -221,7 +221,7 @@ TTL_CGW_LB_DIV            =
 ### mqueue ###
 TTL_QNX_LIB_MQUEUE       = -l mqueue
 TTL_LNX_LIB_MQUEUE       = -l mqueue
-TTL_NTO_LIB_MQUEUE       = 
+TTL_NTO_LIB_MQUEUE       =
 TTL_CGW_LIB_MQUEUE       = -l mqueue
 
 
@@ -288,7 +288,7 @@ ifeq ($(SYSNAME),nto)
    RM = $(TTL_NTO_RM)
    CP = $(TTL_NTO_CP)
    CPPRES = $(TTL_NTO_CP_PRES)
-endif 
+endif
 
 # Definitions for QNX operating system
 
@@ -308,7 +308,7 @@ ifeq ($(SYSNAME),qnx4)
    RM = $(TTL_QNX_RM)
    CP = $(TTL_QNX_CP)
    CPPRES = $(TTL_QNX_CP_PRES)
-endif 
+endif
 
 # Definitions for Cygwin
 
@@ -328,8 +328,7 @@ ifeq ($(TERM),cygwin)
    RM = $(TTL_CGW_RM)
    CP = $(TTL_CGW_CP)
    CPPRES = $(TTL_CGW_CP_PRES)
-endif 
+endif
 
 
 ### End of file ###
-

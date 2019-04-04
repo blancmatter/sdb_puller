@@ -1,8 +1,8 @@
 ################################################################################
 ##
 ##       Copyright (c) Telescope Technologies Limited (TTL) 2004.
-## 
-## Filename: 
+##
+## Filename:
 ##    Tq6LinuxBuild
 ##
 ## Purpose:
@@ -11,7 +11,7 @@
 ## Description:
 ##    N/A
 ##
-## Traceability to Software Design: 
+## Traceability to Software Design:
 ##    N/A
 ##
 ## Authors:
@@ -60,7 +60,7 @@
 # Sign-on
 #
 #
-# 
+#
 echo
 echo Tq6LinuxBuild
 echo TTL script for building the Linux core system software
@@ -74,7 +74,7 @@ ROOTPATH=$PWD
 cd $here
 echo Current directory is $here, root for build is $ROOTPATH
 #
-# Create directories 'bin', 'etc', 'include', 'lib', 'util', 'tdl' 
+# Create directories 'bin', 'etc', 'include', 'lib', 'util', 'tdl'
 #
 mkdir $ROOTPATH/bin
 mkdir $ROOTPATH/etc
@@ -89,6 +89,7 @@ echo "**********************************************************************"
 echo "   Copying Miscellaneous Files (ETC)"
 echo "**********************************************************************"
 cd etc
+echo $PWD
 cp -f `cat Etc.lis` $ROOTPATH/etc
 cd ..
 #
@@ -246,7 +247,7 @@ cp -f EnumTable.idx $ROOTPATH/etc
 cp -f EnumTable.idb $ROOTPATH/etc
 cd ..
 #
-# Build Autoguider components 
+# Build Autoguider components
 #
 echo "**********************************************************************"
 echo "   Autoguider Service Process (AGS)"
@@ -259,4 +260,3 @@ cd ../..
 echo "**********************************************************************"
 echo "   Linux build process completed"
 echo "**********************************************************************"
-

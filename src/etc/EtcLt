@@ -1,0 +1,29 @@
+#! /bin/sh
+./EtcStartup
+echo "Copying 'etc' files for Liverpool Telescope"
+cp -f CilLt.map Cil.map
+cp -f LogLt.cfg Log.cfg
+cp -f PmmLt.cfg Pmm.cfg
+cp -f AcnLtAzimuth.cfg    AcnAzimuth.cfg 
+cp -f AcnLtAltitude.cfg   AcnAltitude.cfg 
+cp -f AcnLtCassegrain.cfg AcnCassegrain.cfg 
+cp -f AmnLtAuxMech.cfg    AmnAuxMech.cfg 
+cp -f AmnLtMirror.cfg     AmnMirror.cfg 
+cp -f EptLt.cfg           Ept.cfg 
+cp -f SptLt.cfg           Spt.cfg 
+cp -f WmsLt.cfg           Wms.cfg 
+cp -f DatLt.cfg           Dat.cfg 
+cp -f AggLt.cfg           Agg.cfg 
+cp -f CmtLtScc.cfg        CmtScc.cfg
+cp -f CmtLtMcc.cfg        CmtMcc.cfg
+cp -f CmtLtAcc.cfg        CmtAcc.cfg
+cp -f CmtLtAzm.cfg        CmtAzm.cfg
+cp -f CmtLtAlt.cfg        CmtAlt.cfg
+cp -f CmtLtCas.cfg        CmtCas.cfg
+cp -f CmtLtAmn.cfg        CmtAmn.cfg
+cp -f CmtLtOcc.cfg        CmtOcc.cfg
+cp -f CmtLtSys.cfg        CmtSys.cfg
+cp -f OhgLt.cfg           Ohg.cfg
+cp -f FtpServerLt.cfg     FtpServer.cfg
+./EtcCleanup
+echo "Done"

@@ -1,0 +1,27 @@
+#! /bin/sh
+./EtcStartup
+echo "Copying 'etc' files for IUCAA Telescope"
+cp -f CilIt.map Cil.map
+cp -f LogIt.cfg Log.cfg
+cp -f PmmIt.cfg Pmm.cfg
+cp -f AcnItAzimuth.cfg    AcnAzimuth.cfg 
+cp -f AcnItAltitude.cfg   AcnAltitude.cfg 
+cp -f AcnItCassegrain.cfg AcnCassegrain.cfg 
+cp -f AmnItAuxMech.cfg    AmnAuxMech.cfg 
+cp -f AmnItMirror.cfg     AmnMirror.cfg 
+cp -f IetIt.cfg           Iet.cfg 
+cp -f SptIt.cfg           Spt.cfg 
+cp -f DatIt.cfg           Dat.cfg 
+cp -f AggIt.cfg           Agg.cfg 
+cp -f CmtItScc.cfg        CmtScc.cfg
+cp -f CmtItMcc.cfg        CmtMcc.cfg
+cp -f CmtItAcc.cfg        CmtAcc.cfg
+cp -f CmtItAzm.cfg        CmtAzm.cfg
+cp -f CmtItAlt.cfg        CmtAlt.cfg
+cp -f CmtItCas.cfg        CmtCas.cfg
+cp -f CmtItAmn.cfg        CmtAmn.cfg
+cp -f CmtItSys.cfg        CmtSys.cfg
+cp -f OhgIt.cfg           Ohg.cfg
+cp -f FtpServerIt.cfg     FtpServer.cfg
+./EtcCleanup
+echo "Done"

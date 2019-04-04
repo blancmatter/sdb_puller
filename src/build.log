@@ -1,0 +1,265 @@
+
+Tq6LinuxBuild
+TTL script for building the Linux core system software
+
+Current directory is /vagrant/src, root for build is /vagrant
+mkdir: cannot create directory ‘/vagrant/bin’: File exists
+mkdir: cannot create directory ‘/vagrant/etc’: File exists
+mkdir: cannot create directory ‘/vagrant/include’: File exists
+mkdir: cannot create directory ‘/vagrant/lib’: File exists
+mkdir: cannot create directory ‘/vagrant/util’: File exists
+mkdir: cannot create directory ‘/vagrant/tdl’: File exists
+**********************************************************************
+   Copying Miscellaneous Files (ETC)
+**********************************************************************
+/vagrant/src/etc
+cp: cannot stat ‘CilLt.map’: No such file or directory
+cp: cannot stat ‘CilIt.map’: No such file or directory
+cp: cannot stat ‘CilF1.map’: No such file or directory
+cp: cannot stat ‘CilF2.map’: No such file or directory
+cp: cannot stat ‘PmmLt.cfg’: No such file or directory
+cp: cannot stat ‘PmmIt.cfg’: No such file or directory
+cp: cannot stat ‘PmmF1.cfg’: No such file or directory
+cp: cannot stat ‘PmmF2.cfg’: No such file or directory
+cp: cannot stat ‘LogLt.cfg’: No such file or directory
+cp: cannot stat ‘LogIt.cfg’: No such file or directory
+cp: cannot stat ‘LogF1.cfg’: No such file or directory
+cp: cannot stat ‘LogF2.cfg’: No such file or directory
+cp: cannot stat ‘EtcLt’: No such file or directory
+cp: cannot stat ‘EtcIt’: No such file or directory
+cp: cannot stat ‘EtcF1’: No such file or directory
+cp: cannot stat ‘EtcF2’: No such file or directory
+cp: cannot stat ‘AcnLtAzimuth.cfg’: No such file or directory
+cp: cannot stat ‘AcnLtAltitude.cfg’: No such file or directory
+cp: cannot stat ‘AcnLtCassegrain.cfg’: No such file or directory
+cp: cannot stat ‘AmnLtAuxMech.cfg’: No such file or directory
+cp: cannot stat ‘AmnLtMirror.cfg’: No such file or directory
+cp: cannot stat ‘AcnItAzimuth.cfg’: No such file or directory
+cp: cannot stat ‘AcnItAltitude.cfg’: No such file or directory
+cp: cannot stat ‘AcnItCassegrain.cfg’: No such file or directory
+cp: cannot stat ‘AmnItAuxMech.cfg’: No such file or directory
+cp: cannot stat ‘AmnItMirror.cfg’: No such file or directory
+cp: cannot stat ‘AcnF1Azimuth.cfg’: No such file or directory
+cp: cannot stat ‘AcnF1Altitude.cfg’: No such file or directory
+cp: cannot stat ‘AcnF1Cassegrain.cfg’: No such file or directory
+cp: cannot stat ‘AmnF1AuxMech.cfg’: No such file or directory
+cp: cannot stat ‘AmnF1Mirror.cfg’: No such file or directory
+cp: cannot stat ‘AcnF2Azimuth.cfg’: No such file or directory
+cp: cannot stat ‘AcnF2Altitude.cfg’: No such file or directory
+cp: cannot stat ‘AcnF2Cassegrain.cfg’: No such file or directory
+cp: cannot stat ‘AmnF2AuxMech.cfg’: No such file or directory
+cp: cannot stat ‘AmnF2Mirror.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4az12_63.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4az12_83.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4az12_2high_63.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4az12_2high_73.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4az12_2high_83.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4az12_2high_73+10%.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_haz1Iusiso_11discrete.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_haz1LTsiso_11discrete.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4f1az18_83_P2a.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4f1az18_63_P2a.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4f1az25_63.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4f1az25_83.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4f1az26_63.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hm4f1az26_83.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hcas3discrete.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hcas3discrete_16.cfg’: No such file or directory
+cp: cannot stat ‘Hnf_hcas3discrete_25.cfg’: No such file or directory
+cp: cannot stat ‘AggLt.cfg’: No such file or directory
+cp: cannot stat ‘AggIt.cfg’: No such file or directory
+cp: cannot stat ‘AggF1.cfg’: No such file or directory
+cp: cannot stat ‘AggF2.cfg’: No such file or directory
+cp: cannot stat ‘EptLt.cfg’: No such file or directory
+cp: cannot stat ‘EptF1.cfg’: No such file or directory
+cp: cannot stat ‘EptF2.cfg’: No such file or directory
+cp: cannot stat ‘IetIt.cfg’: No such file or directory
+cp: cannot stat ‘SptIt.cfg’: No such file or directory
+cp: cannot stat ‘SptLt.cfg’: No such file or directory
+cp: cannot stat ‘SptF1.cfg’: No such file or directory
+cp: cannot stat ‘SptF2.cfg’: No such file or directory
+cp: cannot stat ‘WmsLt.cfg’: No such file or directory
+cp: cannot stat ‘WmsIt.cfg’: No such file or directory
+cp: cannot stat ‘WmsF1.cfg’: No such file or directory
+cp: cannot stat ‘WmsF2.cfg’: No such file or directory
+cp: cannot stat ‘WmsF1.qli’: No such file or directory
+cp: cannot stat ‘WmsF2.qli’: No such file or directory
+cp: cannot stat ‘DatLt.cfg’: No such file or directory
+cp: cannot stat ‘DatIt.cfg’: No such file or directory
+cp: cannot stat ‘DatF1.cfg’: No such file or directory
+cp: cannot stat ‘DatF2.cfg’: No such file or directory
+cp: cannot stat ‘McpOperationalPause.tst’: No such file or directory
+cp: cannot stat ‘FtpServerF1.cfg’: No such file or directory
+cp: cannot stat ‘FtpServerF2.cfg’: No such file or directory
+cp: cannot stat ‘FtpServerIt.cfg’: No such file or directory
+cp: cannot stat ‘FtpServerLt.cfg’: No such file or directory
+**********************************************************************
+   Building core system software
+**********************************************************************
+   Copying Include Files
+**********************************************************************
+**********************************************************************
+   Configuration File Utilities (CFU)
+**********************************************************************
+rm -f Cfu.o
+rm -f Cfu.lib
+rm -f CfuExample.o CfuExample
+make: *** No rule to make target `/ttl/sw/include/Cil.h', needed by `Cfu.o'.  Stop.
+cp: cannot stat ‘Cfu.lib’: No such file or directory
+**********************************************************************
+   Time Utilities (TIM)
+**********************************************************************
+rm -f testprog
+rm -f Tim.o testprog.o
+rm -f Tim.lib
+make: *** No rule to make target `/ttl/sw/include/TtlConstants.h', needed by `Tim.o'.  Stop.
+cp: cannot stat ‘Tim.lib’: No such file or directory
+**********************************************************************
+   System Logging (LOG)
+**********************************************************************
+rm -f Log.o LogSnprintf.o
+rm -f Log.lib
+rm -f testlog
+make: *** No rule to make target `/ttl/sw/include/Cil.h', needed by `Log.o'.  Stop.
+cp: cannot stat ‘Log.lib’: No such file or directory
+**********************************************************************
+   Command Line Utilities (CLU)
+**********************************************************************
+rm -f Clu.o CluVersion.o
+rm -f Clu.lib
+rm -f CluExample CluExample.o
+make: *** No rule to make target `/ttl/sw/include/TtlSystem.h', needed by `Clu.o'.  Stop.
+cp: cannot stat ‘Clu.lib’: No such file or directory
+**********************************************************************
+   Communications Interface Library (CIL)
+**********************************************************************
+rm -f Cil.o CilUtil.o
+rm -f Cil.lib
+rm -f testbroker testclient testraw testserver
+make: *** No rule to make target `/ttl/sw/include/TtlSystem.h', needed by `Cil.o'.  Stop.
+cp: cannot stat ‘Cil.lib’: No such file or directory
+cp: cannot stat ‘testclient’: No such file or directory
+cp: cannot stat ‘testserver’: No such file or directory
+**********************************************************************
+   Header-to-ID Library (HTI)
+**********************************************************************
+rm -f HtiHdr2Id.o HtiFixRecLen.o HtiGenBinary.o HtiReport.o HtiList.o HtiUnits.o HtiSqlList.o Hti.o
+rm -f HtiHdr2Id HtiFixRecLen HtiGenBinary HtiReport HtiList HtiUnits Hti.lib
+cc -c -pedantic -I /ttl/sw/include -ansi -D_GNU_SOURCE HtiHdr2Id.c -o HtiHdr2Id.o
+cc -o HtiHdr2Id HtiHdr2Id.o -pedantic -ansi -lm -lrt 
+cc -c -pedantic -I /ttl/sw/include -ansi -D_GNU_SOURCE HtiFixRecLen.c -o HtiFixRecLen.o
+cc -o HtiFixRecLen HtiFixRecLen.o -pedantic -ansi -lm -lrt 
+cc -c -pedantic -I /ttl/sw/include -ansi -D_GNU_SOURCE HtiGenBinary.c -o HtiGenBinary.o
+HtiGenBinary.c:67:23: fatal error: TtlSystem.h: No such file or directory
+ #include "TtlSystem.h"
+                       ^
+compilation terminated.
+make: *** [HtiGenBinary.o] Error 1
+cp: cannot stat ‘Hti.lib’: No such file or directory
+cp: cannot stat ‘HtiGenBinary’: No such file or directory
+cp: cannot stat ‘HtiReport’: No such file or directory
+cp: cannot stat ‘HtiList’: No such file or directory
+cp: cannot stat ‘HtiUnits’: No such file or directory
+**********************************************************************
+   Status Database Library (SDB)
+**********************************************************************
+rm -f Sdb.o SdbAutoSubmit.o SdbCleanup.o SdbClear.o SdbCount.o SdbFileRetr.o SdbHash.o SdbHeartbeat.o SdbList.o SdbLnkLst.o SdbMulRetr.o SdbProcess.o SdbReply.o SdbReport.o SdbRetrieve.o SdbSetup.o SdbState.o SdbStore.o SdbSubmit.o SdbUnits.o
+rm -f Sdb
+rm -f testclient testcount testdump testfilereq testflood
+rm -f testinject testlist testmulreq teststore
+rm -f Sdb.lib
+make: *** No rule to make target `/ttl/sw/include/Cil.h', needed by `SdbCode.o'.  Stop.
+cp: cannot stat ‘Sdb.lib’: No such file or directory
+**********************************************************************
+   SDB Data Dump (STD)
+**********************************************************************
+rm -f StdMain.o StdInit.o StdOutput.o  gzio.o zutil.o crc32.o deflate.o inflate.o adler32.o trees.o infblock.o infcodes.o inftrees.o infutil.o inffast.o
+rm -f Std
+rm -f Std.lib
+rm -f zlib.lib
+make: *** No rule to make target `/ttl/sw/include/Cil.h', needed by `StdLib.o'.  Stop.
+cp: cannot stat ‘Std.lib’: No such file or directory
+cp: cannot stat ‘Std’: No such file or directory
+**********************************************************************
+   TTL Development Library (TDL)
+**********************************************************************
+rm -f Tdl.lib
+rm -f Cil.o CilUtil.o Tim.o Cfu.o
+rm -f TdlTx TdlRx
+cc -c -pedantic -ansi  Cil.c -o 'Cil.o'
+Cil.c: In function ‘eCilSetup’:
+Cil.c:452:61: error: ‘struct hostent’ has no member named ‘h_addr’
+             NewDestPtr->IpAddress = *( ( Uint32_t *) HostPtr->h_addr );
+                                                             ^
+make: *** [Cil.o] Error 1
+cp: cannot stat ‘Tdl.lib’: No such file or directory
+cp: cannot stat ‘Tdl.lib’: No such file or directory
+**********************************************************************
+   Computer Monitoring Task (CMT)
+**********************************************************************
+rm -f CmtMain.o CmtInit.o CmtInterface.o CmtReport.o CmtUtil.o CmtQnx.o CmtQnx6.o CmtLinux.o
+rm -f a.out
+make: *** No rule to make target `/ttl/sw/include/Sdb.h', needed by `CmtMain.o'.  Stop.
+**********************************************************************
+   Computer Control Task (CCT)
+**********************************************************************
+rm -f CctMain.o CctInit.o CctOsInterface.o CctUtil.o
+rm -f Cct
+make: *** No rule to make target `/ttl/sw/include/TtlSystem.h', needed by `CctMain.o'.  Stop.
+cp: cannot stat ‘Cct’: No such file or directory
+**********************************************************************
+   SDB to MySQL Utility (SMU)
+**********************************************************************
+rm -f SmuRecv.o
+rm -f SmuRecv
+make: *** No rule to make target `/ttl/sw/include/Sdb.h', needed by `SmuRecv.o'.  Stop.
+cp: cannot stat ‘SmuRecv’: No such file or directory
+**********************************************************************
+   Boltwood Cloud Interface (BCI)
+**********************************************************************
+rm -f BciMain.o BciInterface.o BciSerial.o BciOutput.o
+rm -f Bci
+cc -c  BciMain.c -o BciMain.o
+cc -c  BciInterface.c -o BciInterface.o
+BciInterface.c: In function ‘iBciGetStatusData’:
+BciInterface.c:241:16: warning: format not a string literal and no format arguments [-Wformat-security]
+                syslog( LOG_NOTICE, Buffer + 1 );
+                ^
+BciInterface.c:247:16: warning: format not a string literal and no format arguments [-Wformat-security]
+                syslog( LOG_NOTICE, Buffer + 1 );
+                ^
+BciInterface.c:253:16: warning: format not a string literal and no format arguments [-Wformat-security]
+                syslog( LOG_NOTICE, Buffer + 1 );
+                ^
+cc -c  BciSerial.c -o BciSerial.o
+cc -c  BciOutput.c -o BciOutput.o
+BciOutput.c: In function ‘iBciWriteOutputFile’:
+BciOutput.c:139:10: warning: format not a string literal and no format arguments [-Wformat-security]
+          fprintf( FileId, OutputStr );
+          ^
+BciOutput.c:178:10: warning: format not a string literal and no format arguments [-Wformat-security]
+          fprintf( FileId, OutputStr );
+          ^
+cc -o Bci BciMain.o BciInterface.o BciSerial.o BciOutput.o 
+**********************************************************************
+   HeaderToId Table Generation (HTG)
+**********************************************************************
+rm -f IdTable.c    IdTable.o    IdTable.out 
+rm -f UnitsTable.c UnitsTable.o UnitsTable.out 
+rm -f FullTable.c  FullTable.o  FullTable.out 
+rm -f StatusTable.c  StatusTable.o  StatusTable.out 
+rm -f EnumTable.c EnumTable.o EnumTable.out 
+# Create a C module and function header
+/ttl/sw/util/HtiHdr2Id start > IdTable.c
+/bin/sh: 1: /ttl/sw/util/HtiHdr2Id: not found
+make: *** [IdTable] Error 127
+**********************************************************************
+   Autoguider Service Process (AGS)
+**********************************************************************
+rm -f AgsInit.o AgsMain.o AgsProcess.o AgsReply.o AgsReport.o AgsUtil.o
+rm -f Ags
+make: *** No rule to make target `/ttl/sw/include/Sdb.h', needed by `AgsInit.o'.  Stop.
+cp: cannot stat ‘Ags’: No such file or directory
+**********************************************************************
+   Linux build process completed
+**********************************************************************

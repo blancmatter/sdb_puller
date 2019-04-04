@@ -1,0 +1,307 @@
+##
+##       Copyright (c) Telescope Technologies Limited, 2000
+##
+## File Name:
+##    CilIt.map
+##
+## Purpose:
+##    Provide UDP addresses for CIL identified tasks - IUCAA Telescope.
+##
+## Description:
+##    Each line defines a potential connection that an entity may use.
+##    Lines with a # in column 1 are ignored.
+##
+##    All other lines are expected to be as follows :
+##    name, ip address, port number
+##
+##    Where: name = text id of entity (max 32 chars), not used.
+##           ip address = dotted quad IP address of node where the entity runs.
+##           port number = port number the entity sends/receives messages on.
+##
+##    Anything after the port number is ignored.
+##    White space is ignored.
+##    Lines must be <= 80 characters long.
+##    Last data line in file must be terminated with a line feed.
+##
+##    The data in this file should be in the same order as that in the
+##    Cil.h file.
+##
+## Authors:
+##    plw: Paul L. Wright (TTL)
+##    djm: Derek J. McKay (TTL)
+##    mjf: Martyn J. Ford (TTL)
+##
+## Version:
+##   $Id: CilIt.map,v 0.18 2005/12/02 08:55:22 mjf Exp $
+##
+## History:
+##   $Log: CilIt.map,v $
+##   Revision 0.18  2005/12/02 08:55:22  mjf
+##   Use "ecc" for Enclosure Control Computer rather than IP address.
+##
+##   Revision 0.17  2005/10/19 11:01:00  mjf
+##   Renaming of ECS computer to be called ECC.
+##
+##   Revision 0.16  2005/06/13 13:15:56  mjf
+##   Place CC0 and CM0 on the ECS computer (192.168.2.32).
+##
+##   Revision 0.15  2003/07/08 16:23:56  mjf
+##   Updated to incorporate RCS and OCS running on the OCC, using CC9.
+##
+##   Revision 0.14  2003/02/04 11:29:37  mjf
+##   Addition of entries for Nasmyth X+, Nasmyth X- and Prime focal
+##   focal stations, in terms of a de-rotator axis, a suite of auxiliary
+##   mechanisms and an autoguider.
+##
+##   Revision 0.13  2001/12/06 11:42:01  mjf
+##   Moving of the Autoguider System process (AGS) from the MCC onto the
+##   autoguider computer.
+##
+##   Revision 0.12  2001/11/30 15:37:27  sxf
+##   Added AGP, AGG, AGI for autoguider.
+##
+##   Revision 0.11  2001/07/04 09:29:44  sxf
+##   Added AGG for autoguider guide packets.
+##   NB Guide packets are sent via ra UDP. The AGG entry is jusr a "placeholder"
+##   to reserve a port for guide packets.
+##
+##   Revision 0.10  2001/06/18 12:36:26  mjf
+##   Moving of the TST from the MCC onto the SCC.
+##
+##   Revision 0.9  2001/03/26 17:28:44  mjf
+##   Addition of Primary Mirror Support processes.
+##
+##   Revision 0.8  2001/03/05 18:14:10  mjf
+##   CCT instance 0 moved from non-existent computer 'sys'.
+##
+##   Revision 0.7  2001/03/05 13:30:17  mjf
+##   Renaming of AMx CIL IDs to be OMx (optical).
+##
+##   Revision 0.6  2001/03/02 16:48:07  mjf
+##   Renaming of Auxiliary Mechanism Node entries from AM? to XM?, as
+##   requested by RDL.
+##
+##   Revision 0.5  2001/03/02 09:49:13  mjf
+##   Addition of Computer Monitoring Tasks.
+##
+##   Revision 0.4  2001/02/21 12:12:02  mjf
+##   Move CM0 from non-existent system server onto the MCC.
+##
+##   Revision 0.3  2001/02/20 14:17:53  mjf
+##   Use host names in CIL map, rather than IP addresses.
+##
+##   Revision 0.2  2000/12/11 18:24:58  mjf
+##   Addition of Test Scripting Tool (TST). Also correction to IPT port no.
+##
+##   Revision 0.1  2000/12/11 14:55:19  mjf
+##   Initial revision.
+##
+##
+##
+#
+# MCS (13000 - 13009) - MCP
+#
+MCP,  scc, 13001   # Master Control Process
+CHB,  scc, 13002   # Continuous heartbeat (part of MCP)
+UI1,  scc, 13003   # Un-interruptable power-supply Interface task 1
+UI2,  scc, 13004   # Un-interruptable power-supply Interface task 2
+AI1,  scc, 13005   # Addressable power-switch Interface task 1
+AI2,  scc, 13006   # Addressable power-switch Interface task 2
+AI3,  scc, 13007   # Addressable power-switch Interface task 3
+MIT,  scc, 13008   # Modem Interfce Task
+#
+# MCS (13010 - 13019) - remainder 
+#
+MCB,  mcc, 13010   # Master Command Broker
+SDB,  mcc, 13011   # Status Database
+SFR,  mcc, 13012   # Status database File Recovery task
+SPT,  mcc, 13013   # Services PLC Task
+EPT,  mcc, 13014   # Enclosure PLC Task
+EPS,  mcc, 13015   # Enclosure PLC Simulator
+WMS,  mcc, 13016   # Weather Monitoring System
+AVS,  mcc, 13017   # Audio-Visual System
+#
+# TCS (13020 - 13029)
+#
+TCS,  tcc, 13021   # Telescope Control System
+RCS,  occ, 13022   # Robotic Control System
+OCS,  occ, 13023   # Observatory Control System
+AGS,  acc, 13024   # Autoguider system
+AGP,  tcc, 13025   # Autoguider guide packets
+AGG,  acc, 13026   # Autoguider guide process
+AGI,  mcc, 13027   # Autoguider graphical interface
+#
+# ECI (13030 - 13034)
+#
+EI0,  mcc, 13030   # Engineering Control Interface (session 0)
+EI1,  mcc, 13031   # Engineering Control Interface (session 1)
+EI2,  mcc, 13032   # Engineering Control Interface (session 2)
+EI3,  mcc, 13033   # Engineering Control Interface (session 3)
+EI4,  mcc, 13034   # Engineering Control Interface (session 4)
+#
+# ERT (13035 - 13039)
+#
+ER0,  mcc, 13035   # Engineering Reporting Task (session 0)
+ER1,  mcc, 13036   # Engineering Reporting Task (session 1)
+ER2,  mcc, 13037   # Engineering Reporting Task (session 2)
+ER3,  mcc, 13038   # Engineering Reporting Task (session 3)
+ER4,  mcc, 13039   # Engineering Reporting Task (session 4)
+#
+# Axis/mechanism hardware control nodes (13100 - 13199)
+#
+AZC,  azm, 13111   # Azimuth ACN Comms-In
+AZN,  azm, 13112   # Azimuth ACN Control Node
+AZS,  azm, 13113   # Azimuth ACN Comms-Out
+AZR,  azm, 13114   # Azimuth ACN SDB Reporting
+AZT,  azm, 13115   # Azimuth ACN Test (formerly Simulator AZS)
+AZL,  azm, 13116   # Azimuth ACN Logger
+#
+ELC,  alt, 13121   # Elevation ACN Comms-In
+ELN,  alt, 13122   # Elevation ACN Control Node
+ELS,  alt, 13123   # Elevation ACN Comms-Out
+ELR,  alt, 13124   # Elevation ACN SDB Reporting
+ELT,  alt, 13125   # Elevation ACN Test (formerly Simulator ELS)
+ELL,  alt, 13126   # Elevation ACN Logger
+#
+CSC,  cas, 13131   # Cassegrain ACN Comms-In
+CSN,  cas, 13132   # Cassegrain ACN Control Node
+CSS,  cas, 13133   # Cassegrain ACN Comms-Out
+CSR,  cas, 13134   # Cassegrain ACN SDB Reporting
+CST,  cas, 13135   # Cassegrain ACN Test (formerly Simulator CSS)
+CSL,  cas, 13136   # Cassegrain ACN Logger
+# N1? = 13140-13149
+# N2? = 13150-13159
+# PR? = 13160-13169
+OMC,  amn, 13171   # Auxiliary (Optical) Mechanism Comms-In
+OMN,  amn, 13172   # Auxiliary (Optical) Mechanism Control Node
+OMS,  amn, 13173   # Auxiliary (Optical) Mechanism Comms-Out
+OMR,  amn, 13174   # Auxiliary (Optical) Mechanism SDB Reporting
+OMT,  amn, 13175   # Auxiliary (Optical) Mechanism Test (formerly Simulator AMS)
+OML,  amn, 13176   # Auxiliary (Optical) Mechanism Logger
+#
+MSC,  amn, 13181   # Primary Mirror Support Comms-In
+MSN,  amn, 13182   # Primary Mirror Support Control Node
+MSS,  amn, 13183   # Primary Mirror Support Comms-Out
+MSR,  amn, 13184   # Primary Mirror Support SDB Reporting
+MST,  amn, 13185   # Primary Mirror Support Test (formerly Simulator AMS)
+MSL,  amn, 13186   # Primary Mirror Support Logger
+# 
+NDC,  mcc, 13401   # Nasmyth X+ (drive side) ACN Comms-In
+NDN,  mcc, 13402   # Nasmyth X+ (drive side) ACN Control Node
+NDS,  mcc, 13403   # Nasmyth X+ (drive side) ACN Comms-Out
+NDR,  mcc, 13404   # Nasmyth X+ (drive side) ACN SDB Reporting
+NDT,  mcc, 13405   # Nasmyth X+ (drive side) ACN Test
+NDL,  mcc, 13406   # Nasmyth X+ (drive side) ACN Logger
+# 
+NWC,  mcc, 13411   # Nasmyth X- (wrap side) ACN Comms-In
+NWN,  mcc, 13412   # Nasmyth X- (wrap side) ACN Control Node
+NWS,  mcc, 13413   # Nasmyth X- (wrap side) ACN Comms-Out
+NWR,  mcc, 13414   # Nasmyth X- (wrap side) ACN SDB Reporting
+NWT,  mcc, 13415   # Nasmyth X- (wrap side) ACN Test
+NWL,  mcc, 13416   # Nasmyth X- (wrap side) ACN Logger
+# 
+PFC,  mcc, 13421   # Prime Focus ACN Comms-In
+PFN,  mcc, 13422   # Prime Focus ACN Control Node
+PFS,  mcc, 13423   # Prime Focus ACN Comms-Out
+PFR,  mcc, 13424   # Prime Focus ACN SDB Reporting
+PFT,  mcc, 13425   # Prime Focus ACN Test
+PFL,  mcc, 13426   # Prime Focus ACN Logger
+# 
+DOC,  mcc, 13401   # Nasmyth X+ Auxiliary Mechanisms Comms-In
+DON,  mcc, 13402   # Nasmyth X+ Auxiliary Mechanisms Control Node
+DOS,  mcc, 13403   # Nasmyth X+ Auxiliary Mechanisms Comms-Out
+DOR,  mcc, 13404   # Nasmyth X+ Auxiliary Mechanisms SDB Reporting
+DOT,  mcc, 13405   # Nasmyth X+ Auxiliary Mechanisms Test
+DOL,  mcc, 13406   # Nasmyth X+ Auxiliary Mechanisms Logger
+# 
+WOC,  mcc, 13411   # Nasmyth X- Auxiliary Mechanisms Comms-In
+WON,  mcc, 13412   # Nasmyth X- Auxiliary Mechanisms Control Node
+WOS,  mcc, 13413   # Nasmyth X- Auxiliary Mechanisms Comms-Out
+WOR,  mcc, 13414   # Nasmyth X- Auxiliary Mechanisms SDB Reporting
+WOT,  mcc, 13415   # Nasmyth X- Auxiliary Mechanisms Test
+WOL,  mcc, 13416   # Nasmyth X- Auxiliary Mechanisms Logger
+# 
+POC,  mcc, 13421   # Prime Focus Auxiliary Mechanisms Comms-In
+PON,  mcc, 13422   # Prime Focus Auxiliary Mechanisms Control Node
+POS,  mcc, 13423   # Prime Focus Auxiliary Mechanisms Comms-Out
+POR,  mcc, 13424   # Prime Focus Auxiliary Mechanisms SDB Reporting
+POT,  mcc, 13425   # Prime Focus Auxiliary Mechanisms Test
+POL,  mcc, 13426   # Prime Focus Auxiliary Mechanisms Logger
+#
+DGS,  mcc, 13431   # Nasmyth X+ Autoguider system
+DGP,  mcc, 13432   # Nasmyth X+ Autoguider guide packets
+DGG,  mcc, 13433   # Nasmyth X+ Autoguider guide process
+DGI,  mcc, 13434   # Nasmyth X+ Autoguider graphical interface
+#
+WGS,  mcc, 13441   # Nasmyth X- Autoguider system
+WGP,  mcc, 13442   # Nasmyth X- Autoguider guide packets
+WGG,  mcc, 13443   # Nasmyth X- Autoguider guide process
+WGI,  mcc, 13444   # Nasmyth X- Autoguider graphical interface
+#
+PGS,  mcc, 13451   # Prime Focus Autoguider system
+PGP,  mcc, 13452   # Prime Focus Autoguider guide packets
+PGG,  mcc, 13453   # Prime Focus Autoguider guide process
+PGI,  mcc, 13454   # Prime Focus Autoguider graphical interface
+#
+# Test units (13200 - 13299)
+#
+TU0,  mcc, 13200   # Test Unit 0 (for testing/debugging only)
+TU1,  mcc, 13201   # Test Unit 1 (for testing/debugging only)
+TU2,  mcc, 13202   # Test Unit 2 (for testing/debugging only)
+TU3,  mcc, 13203   # Test Unit 3 (for testing/debugging only)
+TU4,  mcc, 13204   # Test Unit 4 (for testing/debugging only)
+TU5,  mcc, 13205   # Test Unit 5 (for testing/debugging only)
+TU6,  mcc, 13206   # Test Unit 6 (for testing/debugging only)
+TU7,  mcc, 13207   # Test Unit 7 (for testing/debugging only)
+TU8,  scc, 13208   # Test Unit 8 (for testing/debugging only)
+TU9,  scc, 13209   # Test Unit 9 (for testing/debugging only)
+TES,  mcc, 13210   # Test Echo Server (for testing only)
+TMB,  mcc, 13211   # Test Message Broker (for testing only)
+IPT,  tcc, 13212   # IUCAA Prototype TCS (for testing only)
+TST,  scc, 13213   # Test Scripting Tool (for testing only)
+#
+# Miscellaneous services
+#
+LOG,  mcc,   514   # System logging (syslogd)
+#
+# Data Analysis Tool (13040-13049) 
+#
+DA0,  mcc, 13040   # Data Analysis Tool (session 0)
+DA1,  mcc, 13041   # Data Analysis Tool (session 1)
+DA2,  mcc, 13042   # Data Analysis Tool (session 2)
+DA3,  mcc, 13043   # Data Analysis Tool (session 3)
+DA4,  mcc, 13044   # Data Analysis Tool (session 4)
+DA5,  mcc, 13045   # Data Analysis Tool (session 5)
+DA6,  mcc, 13046   # Data Analysis Tool (session 6)
+DA7,  mcc, 13047   # Data Analysis Tool (session 7)
+DA8,  mcc, 13048   # Data Analysis Tool (session 8)
+DA9,  mcc, 13049   # Data Analysis Tool (session 9)
+#
+# Computer Monitoring Task (13300-13309) 
+#
+CM0,  ecc, 13300   # Computer Monitoring Task (ECC - Linux)
+CM1,  mcc, 13301   # Computer Monitoring Task (MCC - QNX)
+CM2,  scc, 13302   # Computer Monitoring Task (SCC - QNX)
+CM3,  acc, 13303   # Computer Monitoring Task (ACC - QNX)
+CM4,  azm, 13304   # Computer Monitoring Task (AZM - QNX)
+CM5,  alt, 13305   # Computer Monitoring Task (ELV - QNX)
+CM6,  cas, 13306   # Computer Monitoring Task (CAS - QNX)
+CM7,  amn, 13307   # Computer Monitoring Task (AMN - QNX)
+CM8,  tcc, 13308   # Computer Monitoring Task (TCC - VMS)
+CM9,  occ, 13309   # Computer Monitoring Task (OCC - Linux)
+#
+# Computer Control Task (13310-13319) 
+#
+CC0,  ecc, 13310   # Computer Control Task (ECC - Linux)
+CC1,  mcc, 13311   # Computer Control Task (MCC - QNX)
+CC2,  scc, 13312   # Computer Control Task (SCC - QNX)
+CC3,  acc, 13313   # Computer Control Task (ACC - QNX)
+CC4,  azm, 13314   # Computer Control Task (AZM - QNX)
+CC5,  alt, 13315   # Computer Control Task (ELV - QNX)
+CC6,  cas, 13316   # Computer Control Task (CAS - QNX)
+CC7,  amn, 13317   # Computer Control Task (AMN - QNX)
+CC8,  tcc, 13318   # Computer Control Task (TCC - VMS)
+CC9,  occ, 13319   # Computer Control Task (OCC - Linux)
+#
+# EOF
+#

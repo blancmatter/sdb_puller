@@ -1,0 +1,31 @@
+#! /bin/sh
+./EtcStartup
+echo "Copying 'etc' files for Faulkes II Telescope"
+cp -f CilF2.map Cil.map
+cp -f LogF2.cfg Log.cfg
+cp -f PmmF2.cfg Pmm.cfg
+cp -f AcnF2Azimuth.cfg    AcnAzimuth.cfg 
+cp -f AcnF2Altitude.cfg   AcnAltitude.cfg 
+cp -f AcnF2Cassegrain.cfg AcnCassegrain.cfg 
+cp -f AmnF2AuxMech.cfg    AmnAuxMech.cfg 
+cp -f AmnF2Mirror.cfg     AmnMirror.cfg 
+cp -f EptF2.cfg           Ept.cfg 
+cp -f SptF2.cfg           Spt.cfg 
+cp -f WmsF2.cfg           Wms.cfg 
+cp -f WmsF2.qli           Wms.qli 
+cp -f DatF2.cfg           Dat.cfg 
+cp -f AggF2.cfg           Agg.cfg 
+cp -f CmtF2Scc.cfg        CmtScc.cfg
+cp -f CmtF2Mcc.cfg        CmtMcc.cfg
+cp -f CmtF2Acc.cfg        CmtAcc.cfg
+cp -f CmtF2Azm.cfg        CmtAzm.cfg
+cp -f CmtF2Alt.cfg        CmtAlt.cfg
+cp -f CmtF2Cas.cfg        CmtCas.cfg
+cp -f CmtF2Amn.cfg        CmtAmn.cfg
+cp -f CmtF2Occ.cfg        CmtOcc.cfg
+cp -f CmtF2Sys.cfg        CmtSys.cfg
+cp -f OhgF2.cfg           Ohg.cfg
+cp -f FtpServerF2.cfg     FtpServer.cfg
+./EtcCleanup
+echo "Done"
+
