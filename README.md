@@ -49,7 +49,7 @@ Run on a local directory with sdb.gz files in it;
 
 ## Getting Started
 
-Th key files are;
+The key files are;
 
 * [bin/influx_migrate.sh](bin/influx_migrate.sh) - Shell script to go through the sdb files, modify the migrate.cfg template and run the Std extraction.
 * [bin/influx_parse.py](bin/influx_parse.py) - parsing file to create an influx_DB ingestion file with all the data
