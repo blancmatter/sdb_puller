@@ -57,13 +57,13 @@ The key files are;
 
 ## Work to do
 
-- [] Create a single config file with sdb DATUM's and their name in the influx_DB. At present this has only been tested with 'hardcoded' elements in [influxparse.py](bin/influxparse.py)
-- [] Test pulling out all DATUM information from the sdb files (although this means creating 400+ manual liens of entry!)
-- [] Test and automate the ingestion into INFLUX_DB
+- [ ] Create a single config file with sdb DATUM's and their name in the influx_DB. At present this has only been tested with 'hardcoded' elements in [influxparse.py](bin/influxparse.py)
+- [ ] Test pulling out all DATUM information from the sdb files (although this means creating 400+ manual liens of entry!)
+- [ ] Test and automate the ingestion into INFLUX_DB
 
 
 ## Authors
 
-* **Martina Zubac** - *Main developer*
+* **Martina Zubac** - *Extention and testing*
 * **Doug Arnold** - *Initial work*
 * **Marco Lam** - *DB setup and support**
