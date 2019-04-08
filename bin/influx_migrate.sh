@@ -29,24 +29,34 @@ cp $BASEPATH/etc/$CONFIGFILE ./
    shopt -s nullglob # Stops file being set to "*.gz" if no files exist in current directory
    for file in *.gz
    do
-   getDateTime "$file"
-   modifyConfig "$file"
-   convert2csv "$file" "$file.csv"
-   runStd
+      getDateTime "$file"
+      modifyConfig "$file"
+      runStd
+      convert2csv "$date.dat" "$date.csv"
+      influx_parse "$date.csv" "$date.flx"
    done
 
    echo utilpath is $UTILPATH
+   #cleanup
 }
 
 #############################
 #   Functions               #
 #############################
 
+cleanup()
+{
+   rm *.cfg
+   rm *.dat
+   rm *.
+}
+
+
 convert2csv()
 {
    # Change tab delimited output to comma delimited
    echo Converting $1 file into $2
-   #cat $1 | sed 's/\t/,/g' > $2
+   cat $1 | sed 's/\t/,/g' > $2
 }
 
 getDateTime()
@@ -64,6 +74,11 @@ getDateTime()
    #echo hour is $hour
 }
 
+influx_parse()
+{
+   $BASEPATH/bin/influx_parse.py $1 $2 TABLE
+}
+
 modifyConfig()
 {
    # Change the config file based on the time of the file
@@ -74,14 +89,6 @@ runStd()
 {
    $UTILPATH/Std -conf $date.cfg -path ./
 }
-
-
-
-
-
-
-
-
 
 
 

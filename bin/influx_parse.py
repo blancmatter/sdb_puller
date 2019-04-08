@@ -3,9 +3,14 @@
 import csv
 import sys
 
-TABLE_NAME = sys.argv[1]
+IN_FILE = sys.argv[1]
+OUT_FILE = sys.argv[2]
 
-with open('test.csv') as csvfile:
+TABLE_NAME = sys.argv[3]
+
+print ('influx_parse.py: Filename is ', IN_FILE)
+
+with open(IN_FILE) as csvfile:
     inputfile = csv.reader(csvfile, delimiter=',')
     data = []
     for row in inputfile:
@@ -34,10 +39,10 @@ for i in range(len(data)):
         s = s[:-1]
     s+= " {}".format(data[i][2])
 
-    print(s)
+    #print(s)
     lines.append(s)
 
-file = open('./outputfile', 'w+')
+file = open(OUT_FILE, 'w+')
 
 file.write("# DDL\n")
 file.write("CREATE DATABASE WUMa\n")
