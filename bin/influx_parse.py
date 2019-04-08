@@ -20,6 +20,7 @@ with open(IN_FILE) as csvfile:
 
 # Set time in s to microseconds for ingestion into INFLUX_DB
 for i in range (len(data)):
+    # Convert from seconds to microseconds
     data[i][2] = float(data[i][2]) * 1000000
 
 
@@ -38,8 +39,6 @@ for i in range(len(data)):
     if s[-1] == ',' :
         s = s[:-1]
     s+= " {}".format(data[i][2])
-
-    #print(s)
     lines.append(s)
 
 file = open(OUT_FILE, 'w+')
