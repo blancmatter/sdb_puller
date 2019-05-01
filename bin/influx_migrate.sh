@@ -48,7 +48,7 @@ cleanup()
 {
    rm *.cfg
    rm *.dat
-   rm *.
+   rm *.csv
 }
 
 
