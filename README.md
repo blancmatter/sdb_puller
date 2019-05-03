@@ -11,7 +11,7 @@ As the Std util is compiled for a 32-bit system, this should be run using a 32-b
 
 * VirtualBox
 * Vagrant
-* Vagrat box ubuntu/trusty32
+* Vagrant box ubuntu/trusty32
 
 in ubuntu these dependencies can be met with;
 
