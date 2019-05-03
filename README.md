@@ -53,13 +53,14 @@ The key files are;
 
 * [bin/influx_migrate.sh](bin/influx_migrate.sh) - Shell script to go through the sdb files, modify the migrate.cfg template and run the Std extraction.
 * [bin/influx_parse.py](bin/influx_parse.py) - parsing file to create an influx_DB ingestion file with all the data
-* [etc/migrate.cfg](bin/influx_parse.py) - template of the DATUM's to be extracted from the
+* [etc/migrate.cfg](etc/migrate.cfg) - template of the DATUM's to be extracted from the sdb server.
 
 ## Work to do
 
 - [ ] Create a single config file with sdb DATUM's and their name in the influx_DB. At present this has only been tested with 'hardcoded' elements in [influxparse.py](bin/influxparse.py)
-- [ ] Test pulling out all DATUM information from the sdb files (although this means creating 400+ manual liens of entry!)
+- [ ] Test pulling out all DATUM information from the sdb files (although this means creating 400+ manual lines of entry!)
 - [ ] Test and automate the ingestion into INFLUX_DB
+- [ ] Deploy to sdbserver and ingest into a local or remote INFLUX_DB
 
 
 ## Authors
