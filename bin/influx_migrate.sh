@@ -18,6 +18,9 @@
 BASEPATH=/ttl/sw
 UTILPATH=$BASEPATH/util/
 CONFIGFILE=migrate.cfg
+SCRATCHDIR=/sdbscratch
+OUTPUTDIR=/sdboutput
+INFLUXTABLE=sdbdata
 
 
 
@@ -46,11 +49,8 @@ cp $BASEPATH/etc/$CONFIGFILE ./
 
 cleanup()
 {
-   rm *.cfg
-   rm *.dat
-   rm *.csv
+   rm $SCRATCHDIR/*
 }
-
 
 convert2csv()
 {
@@ -76,7 +76,7 @@ getDateTime()
 
 influx_parse()
 {
-   $BASEPATH/bin/influx_parse.py $1 $2 TABLE
+   $BASEPATH/bin/influx_parse.py $1 $2 $INFLUXTABLE
 }
 
 modifyConfig()
