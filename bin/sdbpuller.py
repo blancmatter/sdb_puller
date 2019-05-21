@@ -18,6 +18,7 @@ def pruneFileList(filelist, year):
     now = datetime.datetime.now()
     files = []
     for f in filelist:
-        if int(f[-15:-13]) > year && int(f[-15:-13]) <= now.ToString("yy"):
+        # if the 2 digit year is greater than the prune year AND lesseq than current year
+        if int(f[-15:-13]) > year and int(f[-15:-13]) <= now.year % 100:
             files.append(f)
     return files
