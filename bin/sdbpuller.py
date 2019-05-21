@@ -17,6 +17,6 @@ def getFileList(path):
 def pruneFileList(filelist, year):
     files = []
     for f in filelist:
-        if f[-15:-13] > year:
+        if int(f[-15:-13]) > year:
             files.append(f)
     return files
