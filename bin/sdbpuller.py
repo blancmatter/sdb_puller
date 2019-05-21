@@ -12,3 +12,11 @@ def getFileList(path):
                 print(file)
                 files.append(os.path.join(r, file))
     return files
+
+
+def pruneFileList(filelist, year):
+    files = []
+    for f in filelist:
+        if f[-15:-13] > year:
+            files.append(f)
+    return files
