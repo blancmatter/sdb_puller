@@ -1,8 +1,14 @@
 import os
 
-def getFilelist(path):
+def test():
+    print(Sdbpuller module ok)
+
+def getFileList(path):
     files = []
+    # r=root, d=directories, f = files
     for r, d, f in os.walk(path):
-        if '.sdb.gz' in file:
-            files.append(os.path.join(r,file))
+        for file in f:
+            if '.sdb.gz' in file:
+                print(file)
+                files.append(os.path.join(r, file))
     return files
