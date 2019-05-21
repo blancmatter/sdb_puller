@@ -1,7 +1,7 @@
 import os
 
 def test():
-    print(Sdbpuller module ok)
+    print("Sdbpuller module ok")
 
 def getFileList(path):
     files = []
