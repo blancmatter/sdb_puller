@@ -1,3 +1,4 @@
 *.tar
-201801/
 .vagrant/
+sdbscratch/*
+sdboutput/*
