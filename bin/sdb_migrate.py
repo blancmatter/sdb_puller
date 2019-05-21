@@ -1,12 +1,29 @@
 #!/usr/bin/env python3
 
-import configparser
+import sdbpuller
 
 """
-python script to call Std utility, parse
-and ingest into influx or mysql databases
+python script to migrate existing sdbdata
+into an influx or mysql databases
 """
 
-# load ini parameters.
-# parse command line arguments which over-rule any ini settings
-# select the first 20 datums in the list
+
+
+
+
+
+
+
+
+
+def getFileList ():
+
+
+def
+IN_FILE = sys.argv[1]
+
+with open(IN_FILE) as csvfile:
+    inputfile = csv.reader(csvfile, delimiter=',')
+    data = []
+    for row in inputfile:
+        data.append(row)

@@ -1,7 +1,7 @@
 # sdb puller
 
-System to extract data from sdb files from the Liverpool Telescope and format them for ingestion into influx DB.
-As the Std util is compiled for a 32-bit system, this should be run using a 32-bit VM.
+System to extract data from sdb files from the Liverpool Telescope and format them for ingestion into influx DB, which can be queried with grafana.
+As the Std util is compiled for a 32-bit system. Unsucessful attempts to recompile for 64-bit, means that this has to be run using a run using a 32-bit VM, for which the Vagrantfile is provided here.
 
 ## Getting Started
 
@@ -41,18 +41,19 @@ The Vagrant file mounts the local directory into the /ttl/sw directory, which is
 
 The local directory also is mounted in /vagrant, which can be used to store the sdb files which need to be processed.
 
-Run on a local directory with sdb.gz files in it;
-```
-/ttl/sw/bin/influx_migrate.sh
-```
+On Ubuntu systems, the VM can be started automatically on boot by adding the following to the /etc/rc.local file
 
+```
+cd /sdb_puller/ && vagrant up
+exit 0
+```
 
 ## Getting Started
 
 The key files are;
 
-* [bin/influx_migrate.sh](bin/influx_migrate.sh) - Shell script to go through the sdb files, modify the migrate.cfg template and run the Std extraction.
-* [bin/influx_parse.py](bin/influx_parse.py) - parsing file to create an influx_DB ingestion file with all the data
+* [bin/influx_migrate.sh](bin/influx_migrate.sh) - Shell script to go through the sdb files, modify the migrate.cfg template and run the Std extraction from inside the 32bit VM.
+* [bin/influx_parse.py](bin/influx_parse.py) - parsing file to create an influx_DB ingestion file.
 * [etc/migrate.cfg](etc/migrate.cfg) - template of the DATUM's to be extracted from the sdb server.
 
 ## Work to do
@@ -67,4 +68,4 @@ The key files are;
 
 * **Martina Zubac** - *Extention and testing*
 * **Doug Arnold** - *Initial work*
-* **Marco Lam** - *DB setup and support**
+* **Marco Lam** - *DB setup and support*

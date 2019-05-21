@@ -22,7 +22,6 @@ SCRATCHDIR=/sdbscratch
 OUTPUTDIR=/sdboutput
 INFLUXTABLE=sdbdata
 
-TESTING OF PUSHING UP
 
 
 

@@ -23,9 +23,6 @@ for i in range (len(data)):
     # Convert from seconds to nanoseconds
     data[i][2] = float(data[i][2]) * 100000000
 
-def datumRead():
-
-
 
 lines = []
 for i in range(len(data)):
