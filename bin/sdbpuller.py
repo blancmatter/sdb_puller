@@ -1,8 +1,17 @@
 import os
 import datetime
+import configparser
+
+# Locate and read in the config file
+fileDir = os.path.dirname(os.path.abspath(__file__))
+iniFile = fileDir + '/sdbpuller.ini' # should always be in the same dir as this file.
+config = configparser.ConfigParser()
+config.read(iniFile)
+
 
 def test():
     print("Sdbpuller module ok")
+
 
 def getFileList(path):
     '''
@@ -41,15 +50,14 @@ class sdbFile:
         '''
         self.path = path
         self.filename = path[-15:]
+        self.date = path[-15:-7]
         self.year = path[-15:-13]
         self.month = path[-13:-11]
         self.day = path[-11:-9]
         self.hour = path[-9:-7]
 
 
-    def createConfig():
+    def createConfigs(self):
         '''
-        Create the config file
+        Create the config files
         '''
-
-        
