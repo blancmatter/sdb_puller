@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+for file in d*.lst
+do
+cat confhead > temp
+cat $file >> temp
+cat conftail >> temp
+newfile=${file%.*}.cfg
+echo $newfile
+cat temp >> $newfile
+rm temp
+done

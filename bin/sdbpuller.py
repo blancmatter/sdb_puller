@@ -38,6 +38,11 @@ def pruneFileList(filelist, year):
             files.append(f)
     return files
 
+def primeScratch(self):
+    '''
+    Prime the scratchdir with the config templates
+    '''
+
 
 class sdbFile:
     '''
@@ -57,7 +62,21 @@ class sdbFile:
         self.hour = path[-9:-7]
 
 
-    def createConfigs(self):
+    def cleanupScratch(self):
         '''
-        Create the config files
+        Cleanup the scratchdir of config files and the sdb file
+        '''
+        print ("The scratchdir is ", config['DEFAULT']['scratchdir'])
+
+
+
+    def primeScratch(self):
+        '''
+        Prime the scratchdir with the sdb file and modify the configs
+        '''
+
+
+    def sdbParse(self):
+        '''
+        Parse the CSV output file of Std, once run through the VM (see bin/runStd.sh)
         '''
