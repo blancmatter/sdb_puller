@@ -19,4 +19,4 @@ HOUR = $4
 # Call Std for each .cfg file in the directory and convert to a
 # CSV format, so that python can modify for influx ingestion
 cd /sdb_puller/sdbscratch
-/ttl/sw/util/Sdt -conf test.cfg -path ./
+/ttl/sw/util/Std -conf test.cfg -path ./
