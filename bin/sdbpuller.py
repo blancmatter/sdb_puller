@@ -108,7 +108,7 @@ class sdbFile:
         '''
 
         # Remove empty csv files
-        commannd = "find . -size 0 -delete"
+        command = "find . -size 0 -delete"
         os.system(command)
 
         os.chdir(config['DEFAULT']['outputdir'])
