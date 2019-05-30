@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+# Create lists of which Datums are valid / have a look up.
+
+main()
+{
+
+   if [ "$#" -eq 3 ]; then
+      # Call STD once for testing with $2 as the datum name
+      datum="$2 $3"
+      echo $datum
+      sedConf "$datum"
+      callStd
+      checkDat "$datum"
+      cleanup
+   fi
+
+
+
+   while read -r datum; do
+      sedConf "$datum"
+      callStd
+      checkDat "$datum"
+      sleep 1
+      cleanup
+   done < "$1"
+}
+#############################
+#   Functions               #
+#############################
+
+callStd()
+{
+   /ttl/sw/util/Std -conf testdatum.cfg -path ./ > stdout.log 2>&1
+}
+
+checkDat()
+{
+   if grep -q 'Error getting datum' stdout.log; then
+      echo "Datum $1 does not exist"
+      echo $1 >> notexists
+
+   else
+      echo "Datum $1 exists"
+      echo $1 >> exists
+   fi
+}
+
+
+cleanup()
+{
+   rm testdatum.cfg
+   rm stdout.log
+}
+
+sedConf()
+{
+   cat /sdb_puller/conf/datums/testdatums.cfg | sed "s/M_DATUM/$1/" > testdatum.cfg
+}
+
+
+# Call main
+main $*

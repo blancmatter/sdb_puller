@@ -8,6 +8,6 @@
 
 # Start and stop times
 START TIME, 20M_DATE M_HOUR:00:00.000
-STOP TIME,  20M_DATE 0M_PLUS_HOUR:00:00.000
+STOP TIME,  20M_DATE M_HOUR:59:59.999
 
 # Datums to extract in blocks of 80

@@ -18,10 +18,11 @@ with open(IN_FILE) as csvfile:
     # Remove first line with headers
     data = data[1:]
 
-# Set time in s to microseconds for ingestion into INFLUX_DB
+# Set time in s to nanoseconds for ingestion into INFLUX_DB
 for i in range (len(data)):
     # Convert from seconds to nanoseconds
-    data[i][2] = float(data[i][2]) * 100000000
+    data[i][2] = int(float(data[i][2]) * 100000000)
+                                         1000000000
 
 
 lines = []

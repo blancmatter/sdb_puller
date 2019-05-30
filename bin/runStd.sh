@@ -5,11 +5,14 @@
 #
 
 # Inputs
-YEAR = $1
-MONTH = $2
-DAY = $3
-HOUR = $4
+YEAR=$1
+MONTH=$2
+DAY=$3
+HOUR=$4
+HOUR1=$5
 
+
+DATE=datestring
 
 # Sed the config files to update the times, dates and output
 
@@ -19,4 +22,20 @@ HOUR = $4
 # Call Std for each .cfg file in the directory and convert to a
 # CSV format, so that python can modify for influx ingestion
 cd /sdb_puller/sdbscratch
-/ttl/sw/util/Std -conf test.cfg -path ./
+rm *.cfg
+rm *.dat
+
+
+FILES=/sdb_puller/conf/datums/d*.cfg
+
+for f in $FILES
+do
+lf=$(basename $f) # strip path from filename for local file.
+confNo=$(echo $f | sed -e s/[^0-9]//g) # take out the conf number
+echo $lf $confNo
+cat $f | sed "s/M_DATE/$YEAR\/$MONTH\/$DAY/g" | sed "s/M_HOUR/$HOUR/g" | sed "s/M_PLUS_HOUR/$HOUR1/g" | sed "s/M_OUTPUT/$confNo/g" > $lf
+
+/ttl/sw/util/Std -conf $lf -path ./
+cat $confNo.dat | sed 's/\t/,/g' | cut -d "," -f 3- | sed '1d'> /sdb_puller/sdboutput/$confNo.csv
+
+done

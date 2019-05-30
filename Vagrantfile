@@ -54,8 +54,8 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
       vb.name = "StdOS"
-      vb.cpus = 2
-      vb.memory = "2048"
+      vb.cpus = 6
+      vb.memory = "8092"
   end
   #
   # View the documentation for the provider you are using for more

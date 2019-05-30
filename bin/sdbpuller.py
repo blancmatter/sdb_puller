@@ -1,6 +1,13 @@
-import os
-import datetime
 import configparser
+import csv
+import datetime
+import glob, os
+import re
+
+
+#####################
+# Object model
+#####################
 
 # Locate and read in the config file
 fileDir = os.path.dirname(os.path.abspath(__file__))
@@ -38,10 +45,6 @@ def pruneFileList(filelist, year):
             files.append(f)
     return files
 
-def primeScratch(self):
-    '''
-    Prime the scratchdir with the config templates
-    '''
 
 
 class sdbFile:
@@ -60,23 +63,102 @@ class sdbFile:
         self.month = path[-13:-11]
         self.day = path[-11:-9]
         self.hour = path[-9:-7]
+        self.hour1 = str(int(self.hour) + 1)
+        if len(self.hour1) == 1:
+            self.hour1 = "0" + self.hour1
 
 
-    def cleanupScratch(self):
-        '''
-        Cleanup the scratchdir of config files and the sdb file
-        '''
-        print ("The scratchdir is ", config['DEFAULT']['scratchdir'])
+    def callStd(self):
 
+        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + "'"
+        print(command)
+        os.system(command)
+
+    def cleanup(self):
+        command = "rm /sdb_puller/sdbscratch/* ; rm /sdb_puller/sdboutput/*"
+        os.system(command)
+
+
+    def importFlx(self):
+        os.chdir(config['DEFAULT']['outputdir'])
+        files = glob.glob("*.flx")
+        files.sort()
+
+        for file in files:
+            command = "influx -import -path=" + file
+            print(command)
+            os.system(command)
 
 
     def primeScratch(self):
         '''
-        Prime the scratchdir with the sdb file and modify the configs
+        Prime the scratchdir with the sdb file
         '''
+        command = "cp " + self.path + " " + config['DEFAULT']['scratchdir']
+        print(command)
+        os.system(command)
+
 
 
     def sdbParse(self):
         '''
         Parse the CSV output file of Std, once run through the VM (see bin/runStd.sh)
         '''
+        os.chdir(config['DEFAULT']['outputdir'])
+        files = glob.glob("*.csv")
+        files.sort()
+        for file in files:
+            fileNo = re.findall('\d+', file)
+            outFile = fileNo[0] + ".flx"
+            print(outFile)
+            datFile = "/sdb_puller/conf/datums/datums" + fileNo[0] + ".lst"
+            print (datFile)
+
+
+            with open(file) as csvfile:
+                inputfile = csv.reader(csvfile, delimiter=',')
+                global data
+                data = []
+                for row in inputfile:
+                    data.append(row)
+
+            # Set time in s to nanoseconds for ingestion into INFLUX_DB
+            for i in range (len(data)):
+                # Convert from seconds to nanoseconds
+                data[i][0] = int(float(data[i][0]) * 1000000000)
+
+
+            with open(datFile) as csvfile:
+                inputfile = csv.reader(csvfile, delimiter=',')
+                global datums
+                datums = []
+                for row in inputfile:
+                    datums.append(row)
+
+
+            lines = [] # setup ingestion lines
+            for i in range(len(data)):
+                s = "{} ".format("sdbfull")
+                for j in range(1, len(datums)-2):
+                    if data[i][j]:
+                        s += datums[j-1][1] + "." + datums[j-1][2] + "={},".format(data[i][j])
+
+                if s[-1] == ',' :
+                    s = s[:-1]
+                s+= " {}".format(data[i][0])
+                #print(s)
+                lines.append(s)
+
+
+
+
+            file = open(outFile, 'w+')
+
+            file.write("# DDL\n")
+            file.write("CREATE DATABASE sdbfull\n")
+            file.write("\n")
+            file.write("# DML\n")
+            file.write("# CONTEXT-DATABASE: sdbfull\n")
+            file.write("\n")
+            for item in lines:
+                file.write("%s\n" % item)

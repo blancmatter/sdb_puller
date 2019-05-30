@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Create the list files with sets of 80 datums in
+
+split -l 80 $1 -d list
+
+for file in list*
+do
+   echo $file
+   number=${file:4:2}
+   cat $file | sed 's/ //g' | sed 's/^/DAT,/g' > datums$number.lst
+
+done
+
+rm list*
