@@ -103,7 +103,14 @@ class sdbFile:
     def sdbParse(self):
         '''
         Parse the CSV output file of Std, once run through the VM (see bin/runStd.sh)
+        Some CSV files will be empty (no datums values during that hour) and are
+        removed before conversion to FLX files.
         '''
+
+        # Remove empty csv files
+        commannd = "find . -size 0 -delete"
+        os.system(command)
+
         os.chdir(config['DEFAULT']['outputdir'])
         files = glob.glob("*.csv")
         files.sort()
@@ -139,7 +146,7 @@ class sdbFile:
             lines = [] # setup ingestion lines
             for i in range(len(data)):
                 s = "{} ".format("sdbfull")
-                for j in range(1, len(datums)-2):
+                for j in range(1, len(datums)+1):
                     if data[i][j]:
                         s += datums[j-1][1] + "." + datums[j-1][2] + "={},".format(data[i][j])
 
