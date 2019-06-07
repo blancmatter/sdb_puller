@@ -107,11 +107,14 @@ class sdbFile:
         removed before conversion to FLX files.
         '''
 
+
+
+        os.chdir(config['DEFAULT']['outputdir'])
+
         # Remove empty csv files
         command = "find . -size 0 -delete"
         os.system(command)
 
-        os.chdir(config['DEFAULT']['outputdir'])
         files = glob.glob("*.csv")
         files.sort()
         for file in files:
