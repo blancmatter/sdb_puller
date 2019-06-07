@@ -4,6 +4,9 @@
 # Version 0.1 Doug Arnold 24/05/19
 #
 
+# NOTE!!!! This attempt at multi threading has not been adapted to
+# create seperate folders in the scratch directory and thus is useless!
+
 # Inputs
 YEAR=$1
 MONTH=$2
