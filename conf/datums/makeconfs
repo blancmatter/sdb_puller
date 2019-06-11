@@ -9,6 +9,6 @@ do
    cat conftail >> temp
    newfile=${file%.*}.cfg
    echo $newfile
-   cat temp >> $newfile
+   cat temp > $newfile
    rm temp
 done
