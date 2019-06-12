@@ -5,9 +5,7 @@ import glob, os
 import re
 
 
-#####################
-# Object model
-#####################
+
 
 # Locate and read in the config file
 fileDir = os.path.dirname(os.path.abspath(__file__))
@@ -15,9 +13,6 @@ iniFile = fileDir + '/sdbpuller.ini' # should always be in the same dir as this 
 config = configparser.ConfigParser()
 config.read(iniFile)
 
-
-def test():
-    print("Sdbpuller module ok")
 
 
 def getFileList(path):
@@ -64,8 +59,8 @@ class sdbFile:
         self.day = path[-11:-9]
         self.hour = path[-9:-7]
         self.hour1 = str(int(self.hour) + 1)
-        if len(self.hour1) == 1:
-            self.hour1 = "0" + self.hour1
+        if len(self.hour1) == 1: # If value is a single digit
+            self.hour1 = "0" + self.hour1 # Add a zero in frott
 
 
     def callStd(self):
@@ -94,7 +89,10 @@ class sdbFile:
         '''
         Prime the scratchdir with the sdb file
         '''
-        command = "cp " + self.path + " " + config['DEFAULT']['scratchdir']
+        command = "mkdir " + config['DEFAULT']['scratchdir'] + "/" + self.date
+        print(command)
+        os.system(command)
+        command = "cp " + self.path + " " + config['DEFAULT']['scratchdir'] + "/" + self.date
         print(command)
         os.system(command)
 
