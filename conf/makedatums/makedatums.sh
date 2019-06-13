@@ -18,11 +18,14 @@ rm list*
 
 for file in d*.lst
 do
-   cat confhead > temp
+   head -n 13 confTemplate > temp
    cat $file | sed 's/,/, /g'>> temp
-   cat conftail >> temp
+   tail -n 3 confTemplate >> temp
    newfile=${file%.*}.cfg
    echo $newfile
    cat temp > $newfile
    rm temp
 done
+
+rm -r ../datums/*
+mv *.cfg *.lst ../datums/
