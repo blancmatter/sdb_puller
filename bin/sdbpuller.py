@@ -85,6 +85,11 @@ class sdbFile:
             os.system(command)
 
 
+        command = "cat " + self.filename + " >> /sdb_puller/log/import.log"
+        os.system(command)
+
+
+
     def primeScratch(self):
         '''
         Prime the scratchdir with the sdb file
@@ -156,8 +161,6 @@ class sdbFile:
                 s+= " {}".format(data[i][0])
                 #print(s)
                 lines.append(s)
-
-
 
 
             file = open(outFile, 'w+')
