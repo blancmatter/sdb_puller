@@ -65,7 +65,7 @@ class sdbFile:
 
     def callStd(self):
 
-        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + "'"
+        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + " > /dev/null 2>&1" + "'"
         print(command)
         os.system(command)
 
