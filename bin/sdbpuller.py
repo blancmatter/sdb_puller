@@ -69,7 +69,7 @@ class sdbFile:
         print(command)
         os.system(command)
 
-    def cleanup(self):
+    def cleanUp(self):
         command = "rm -rf " + config['DEFAULT']['outputdir'] + "/" + self.date
         print(command)
         os.system(command)
