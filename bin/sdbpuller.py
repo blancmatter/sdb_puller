@@ -75,7 +75,7 @@ class sdbFile:
         os.system(command)
         command = "rm -rf " + config['DEFAULT']['scratchdir'] + "/" + self.date
         print(command)
-        cd ../os.system(command)
+        os.system(command)
 
 
     def importFlx(self):
