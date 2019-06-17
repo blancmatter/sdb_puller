@@ -70,12 +70,17 @@ class sdbFile:
         os.system(command)
 
     def cleanup(self):
-        command = "rm /sdb_puller/sdbscratch/* ; rm /sdb_puller/sdboutput/*"
+        command = "rm -rf " config['DEFAULT']['outputdir'] + "/" + self.date
+        print(command)
         os.system(command)
+        command = "rm -rf " config['DEFAULT']['scratchdir'] + "/" + self.date
+        print(command)
+        cd ../os.system(command)
 
 
     def importFlx(self):
-        os.chdir(config['DEFAULT']['outputdir'])
+        dir = config['DEFAULT']['outputdir'] + "/" + self.date
+        os.chdir(dir)
         files = glob.glob("*.flx")
         files.sort()
 
@@ -92,11 +97,18 @@ class sdbFile:
 
     def primeScratch(self):
         '''
+        Create scratchdir
+        Create outputdir
         Prime the scratchdir with the sdb file
         '''
         command = "mkdir " + config['DEFAULT']['scratchdir'] + "/" + self.date
         print(command)
         os.system(command)
+
+        command = "mkdir " + config['DEFAULT']['outputdir'] + "/" + self.date
+        print(command)
+        os.system(command)
+
         command = "cp " + self.path + " " + config['DEFAULT']['scratchdir'] + "/" + self.date
         print(command)
         os.system(command)
@@ -111,8 +123,8 @@ class sdbFile:
         '''
 
 
-
-        os.chdir(config['DEFAULT']['outputdir'])
+        dir = config['DEFAULT']['outputdir'] + "/" + self.date
+        os.chdir(dir)
 
         # Remove empty csv files
         command = "find . -size 0 -delete"
