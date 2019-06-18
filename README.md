@@ -62,6 +62,7 @@ The key files are;
 * [bin/sdbpuller.py](bin/sdbpuller.py) - Contains sdbFile class with methods to prep scratch directories, parse csv output into influx importable ASCII files and call the influx import.
 * [bin/sdbpuller.ini](bin/sdbpuller.ini) - Config filw with some path options used in sdbpuller.py
 * [bin/callStd.sh](bin/callStd.sh) - Called with an hour value. Script to copy and parse config files and run Std tool for each file. Then places csv output into ouptput directory.
+* [conf/makedatums/makedatums.sh](conf/makedatums/makedatums.sh) - script to be fed a list of Sources and Datums and split into Std config files of n datums each.
 * [Lists of Datums and Config files](conf/datums/) - Lists of the datums which will be searched, currently split into groups of 80
 * [importhour.py](bin/importhour.py) - Example script creating instance of sdbFile and performing tasks to import data into influx.
 
@@ -72,7 +73,7 @@ The key files are;
 - [ ] Create log of houurs successfully ingested
 - [ ] Provide a deamon version / cron callable element, which will import any new files which come from the telescope on the NFS mounted /sdb/
 
-For a list of cuurent enhancements and bugs, see the [repository issues page](/issues/) 
+For a list of cuurent enhancements and bugs, see the [repository issues page](/issues/)
 
 
 ## Implementation on sdbinflux server
