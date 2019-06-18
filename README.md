@@ -72,7 +72,7 @@ The key files are;
 - [ ] Create log of houurs successfully ingested
 - [ ] Provide a deamon version / cron callable element, which will import any new files which come from the telescope on the NFS mounted /sdb/
 
-For a list of cuurent enhancements and bugs, see the [repository issues page](issues/) 
+For a list of cuurent enhancements and bugs, see the [repository issues page](/issues/) 
 
 
 ## Implementation on sdbinflux server
