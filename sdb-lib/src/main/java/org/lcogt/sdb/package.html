@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+</head>
+<body bgcolor="white">
+<!-- Insert Package comment here -->
+Java library for accessing Sdb files.
+
+<!-- Insert package description here -->
+{@link org.lcogt.sdb.SdbParserApp} shows example usage of the library classes. To simply parse and Sdb file:-
+
+<pre>
+/* Open Sdb file */
+SdbFile sdbfile = new SdbFile(datafile);
+
+/* Parse the sdb */
+while ((SdbDatum datum = sdbfile.readNextDatum()) != null)
+{
+   System.out.print(datum.toString());
+}
+
+sdbfile.closeFile();
+</pre>
+
+Additional information relating to this project can be found on the <a href="http://intranet.lco.gtn/Java_Sdb_Library">wiki</a>.
+
+@author <a href="mailto:mnorbury@lcogt.net">mnorbury</a>
+@see org.lcogt.sdb.core.SdbDatum
+@see org.lcogt.sdb.core.SdbFile
+
+</body>
+</html>
