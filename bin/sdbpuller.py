@@ -40,6 +40,21 @@ def pruneFileList(filelist, year):
             files.append(f)
     return files
 
+def fileExists(path):
+    '''
+    Check if a filename exists in the import log
+    Exists return True
+    Noextists return False
+    '''
+    file = path[-15:]
+
+    with open(config['DEFAULT']['logfile']) as f:
+        datafile = f.readlines()
+
+    for line in datafile:
+        if file in line:
+            return True
+    return False
 
 
 class sdbFile:
@@ -70,6 +85,7 @@ class sdbFile:
         os.system(command)
 
     def cleanUp(self):
+        os.chdir('/')
         command = "rm -rf " + config['DEFAULT']['outputdir'] + "/" + self.date
         print(command)
         os.system(command)
@@ -90,7 +106,7 @@ class sdbFile:
             os.system(command)
 
 
-        command = "echo " + self.filename + " >> /sdb_puller/log/import.log"
+        command = "echo " + self.filename + " >> " + config['DEFAULT']['logfile']
         os.system(command)
 
 
