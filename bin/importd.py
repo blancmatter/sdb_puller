@@ -9,20 +9,21 @@ def main():
 
     for event in i.event_gen(yield_nones=False):
         (_, type_names, path, filename) = event
+        print (event)
 
         if 'IN_CREATE' in type_names:
             file = path + "/" + filename
-
-            if not sp.fileExists(file):
-                sdb = sp.sdbFile(file)
-                sdb.primeScratch()
-                sdb.callStd()
-                sdb.sdbParse()
-                sdb.importFlx()
-                sdb.cleanUp()
-                del sdb
-            else:
-                print ("File Exists")
+            if 'sdb.gz' in file:
+                if True: #not sp.fileExists(file):
+                    sdb = sp.sdbFile(file)
+                    sdb.primeScratch()
+                    sdb.callStd()
+                    sdb.sdbParse()
+                    sdb.importFlx()
+                    sdb.cleanUp()
+                    del sdb
+                else:
+                    print ("File Exists")
 
 
 if __name__ == '__main__':
