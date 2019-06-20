@@ -90,7 +90,7 @@ class sdbFile:
             os.system(command)
 
 
-        command = "cat " + self.filename + " >> /sdb_puller/log/import.log"
+        command = "echo " + self.filename + " >> /sdb_puller/log/import.log"
         os.system(command)
 
 
