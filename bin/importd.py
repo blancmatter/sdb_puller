@@ -7,6 +7,7 @@ def _main():
     while True:
         files = sp.getFileList('/sdb')
         mostRecent = sp.returnMostRecent(files)
+        print(mostRecent)
         if not sp.fileExists(mostRecent):
             time.sleep(30) # make sure any writes have finished to filesystem
             sdb = sp.sdbFile(file)
