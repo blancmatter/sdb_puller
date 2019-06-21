@@ -13,6 +13,12 @@ iniFile = fileDir + '/sdbpuller.ini' # should always be in the same dir as this 
 config = configparser.ConfigParser()
 config.read(iniFile)
 
+def returnMostRecent(paths):
+    '''
+    Return the most recent file in the files list
+    '''
+    return max(paths, key=os.path.getctime)
+
 
 
 def getFileList(path):

@@ -1,29 +1,24 @@
 import sdbpuller as sp
 import inotify.adapters
-import sys
+import sys, time
 
 
 def main():
-    dir = sys.argv[1]
-    i = inotify.adapters.InotifyTree(dir)
+    while True:
+        files = sp.getFileList('/sdb')
+        mostRecent = sp.returnMostRecent(files)
+        if not sp.fileExists(mostRecent):
+            time.sleep(30) # make sure any writes have finished to filesystem
+            sdb = sp.sdbFile(file)
+            sdb.primeScratch()
+            sdb.callStd()
+            sdb.sdbParse()
+            sdb.importFlx()
+            sdb.cleanUp()
+            del sdb
+        else:
+            time.sleep(5)
 
-    for event in i.event_gen(yield_nones=False):
-        (_, type_names, path, filename) = event
-        print (event)
-
-        if 'IN_CREATE' in type_names:
-            file = path + "/" + filename
-            if 'sdb.gz' in file:
-                if True: #not sp.fileExists(file):
-                    sdb = sp.sdbFile(file)
-                    sdb.primeScratch()
-                    sdb.callStd()
-                    sdb.sdbParse()
-                    sdb.importFlx()
-                    sdb.cleanUp()
-                    del sdb
-                else:
-                    print ("File Exists")
 
 
 if __name__ == '__main__':
