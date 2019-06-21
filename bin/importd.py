@@ -1,9 +1,9 @@
+#!/usr/bin/env python3
 import sdbpuller as sp
-import inotify.adapters
 import sys, time
 
 
-def main():
+def _main():
     while True:
         files = sp.getFileList('/sdb')
         mostRecent = sp.returnMostRecent(files)
@@ -22,4 +22,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    _main()
