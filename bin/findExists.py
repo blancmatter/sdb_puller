@@ -13,6 +13,8 @@ for file in sorted:
     if sdb.testImport():
         print(file, " exists")
         f.write(file)
+    else:
+        print(file, " does not exist")
 
 
 f.close
