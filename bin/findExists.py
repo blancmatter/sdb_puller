@@ -10,7 +10,7 @@ sorted = sp.sortFiles(files)
 for file in sorted:
     sdb = sp.sdbFile(file)
 
-    if sdb.testImport()
+    if sdb.testImport():
         print(file, " exists")
         f.write(file)
 
