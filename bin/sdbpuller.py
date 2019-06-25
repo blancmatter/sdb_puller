@@ -285,7 +285,7 @@ class sdbFile:
         print (dateStr)
 
         # Create query using partial datestring. Returns the count of weather reading taking out first and last 30 seconds of the hour.
-        queryStr = "SELECT count(*) from \"sdbfull\".\"autogen\".\"sdbfull\" WHERE time > \\'20" + dateStr + "00:30\\' and time < \\'20" + dateStr + "59:30\\'"
+        queryStr = "SELECT count(*) from \"sdbfull\".\"autogen\".\"sdbfull\" WHERE time > \'20" + dateStr + "00:30\' and time < \'20" + dateStr + "59:30\'"
         print(queryStr)
 
         # result set returned. Will be empty if no data.
