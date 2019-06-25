@@ -18,7 +18,7 @@ def daemonize(self):
     """
     do the UNIX double-fork magic, see Stevens' "Advanced
     Programming in the UNIX Environment" for details (ISBN 0201563177)
-    http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
+    http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16e
     Taken from https://franklingu.github.io/programming/
     2016/03/01/creating-daemon-process-python-example-explanation/
     """
@@ -108,7 +108,11 @@ def sortFiles(paths):
     """
     Return List of files sorted by getctime
     """
-    return paths.sort(key=os.path.getctime)
+    paths.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+    return paths
+
+
+
 
 def returnMostRecent(paths):
     """
