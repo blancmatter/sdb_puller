@@ -83,10 +83,13 @@ def getFileList(path):
     Return a list of all sdb files in the directory structure
     """
     files = []
+    sdbRe = re.compile("\d\d\d\d\d\d\d\d.sdb.gz$")
+
     # r=root, d=directories, f = files
     for r, d, f in os.walk(path):
         for file in f:
-            if '.sdb.gz' in file:
+
+            if sdbRe.match(file):
                 files.append(os.path.join(r, file))
     return files
 
@@ -282,7 +285,6 @@ class sdbFile:
                 + self.month + "-" \
                 + self.day   + " " \
                 + self.hour  + ":"
-        print (dateStr)
 
         # Create query using partial datestring. Returns the count of weather reading taking out first and last 30 seconds of the hour.
         queryStr = "SELECT count(*) from \"sdbfull\".\"autogen\".\"sdbfull\" WHERE time > \'20" + dateStr + "00:30\' and time < \'20" + dateStr + "59:30\'"
