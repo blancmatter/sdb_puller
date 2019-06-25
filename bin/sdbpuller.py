@@ -275,7 +275,7 @@ class sdbFile:
         - Run a count query which returns the numbers of datums.
         """
 
-        # client = InfluxDBClient(host='localhost', port=8086)
+        client = InfluxDBClient(host='localhost', port=8086)
 
         # Create a partial datestring as YY-MM-DD HH:
         dateStr = self.year  + "-" \
