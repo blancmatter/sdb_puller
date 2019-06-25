@@ -3,6 +3,7 @@
 import sdbpuller as sp
 
 f= open("imported.txt","w+")
+n = open("nimported.txt","w+")
 
 files = sp.getFileList('/sdb/')
 sorted = sp.sortFiles(files)
@@ -18,3 +19,4 @@ for file in sorted:
 
 
 f.close
+n.close
