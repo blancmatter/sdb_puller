@@ -4,6 +4,14 @@ import sys, time
 
 
 def _main():
+    """
+    daemon to run on sdbinflux
+    """
+
+    # Deamonize process
+    sp.daemonize()
+
+
     while True:
         files = sp.getFileList('/sdb')
         mostRecent = sp.returnMostRecent(files))
@@ -18,7 +26,7 @@ def _main():
             sdb.cleanUp()
             del sdb
         else:
-            time.sleep(5)
+            time.sleep(120)
 
 
 

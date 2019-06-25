@@ -3,6 +3,7 @@ import csv
 import datetime
 import glob, os
 import re
+from influxdb import InfluxDBClient
 
 
 
@@ -13,45 +14,60 @@ iniFile = fileDir + '/sdbpuller.ini' # should always be in the same dir as this 
 config = configparser.ConfigParser()
 config.read(iniFile)
 
-def returnMostRecent(paths):
-    '''
-    Return the most recent file in the files list
-    '''
-    return max(paths, key=os.path.getctime)
+def daemonize(self):
+    """
+    do the UNIX double-fork magic, see Stevens' "Advanced
+    Programming in the UNIX Environment" for details (ISBN 0201563177)
+    http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
+    Taken from https://franklingu.github.io/programming/
+    2016/03/01/creating-daemon-process-python-example-explanation/
+    """
+    try:
+            pid = os.fork()
+            if pid > 0:
+                    # exit first parent
+                    sys.exit(0)
+    except OSError as e:
+            sys.stderr.write("fork #1 failed: %d (%s)\n" % (e.errno, e.strerror))
+            sys.exit(1)
 
+    # decouple from parent environment
+    os.chdir("/")
+    os.setsid()
+    os.umask(0)
 
+    # do second fork
+    try:
+            pid = os.fork()
+            if pid > 0:
+                    # exit from second parent
+                    sys.exit(0)
+    except OSError as e:
+            sys.stderr.write("fork #2 failed: %d (%s)\n" % (e.errno, e.strerror))
+            sys.exit(1)
 
-def getFileList(path):
-    '''
-    Return a list of all sdb files in the directory structure
-    '''
-    files = []
-    # r=root, d=directories, f = files
-    for r, d, f in os.walk(path):
-        for file in f:
-            if '.sdb.gz' in file:
-                files.append(os.path.join(r, file))
-    return files
+    # redirect standard file descriptors
+    sys.stdout.flush()
+    sys.stderr.flush()
+    si = file(self.stdin, 'r')
+    so = file(self.stdout, 'a+')
+    se = file(self.stderr, 'a+', 0)
+    os.dup2(si.fileno(), sys.stdin.fileno())
+    os.dup2(so.fileno(), sys.stdout.fileno())
+    os.dup2(se.fileno(), sys.stderr.fileno())
 
+    # write pidfile
+    atexit.register(self.delpid)
+    pid = str(os.getpid())
+    file(self.pidfile,'w+').write("%s\n" % pid)
 
-def pruneFileList(filelist, year):
-    '''
-    Return a pruned list of files, valid after a certain year
-    '''
-    now = datetime.datetime.now()
-    files = []
-    for f in filelist:
-        # if the 2 digit year is greater than the prune year AND lesseq than current year
-        if int(f[-15:-13]) >= year and int(f[-15:-13]) <= now.year % 100:
-            files.append(f)
-    return files
 
 def fileExists(path):
-    '''
+    """
     Check if a filename exists in the import log
     Exists return True
     Noextists return False
-    '''
+    """
     file = path[-15:]
 
     with open(config['DEFAULT']['logfile']) as f:
@@ -62,16 +78,54 @@ def fileExists(path):
             return True
     return False
 
+def getFileList(path):
+    """
+    Return a list of all sdb files in the directory structure
+    """
+    files = []
+    # r=root, d=directories, f = files
+    for r, d, f in os.walk(path):
+        for file in f:
+            if '.sdb.gz' in file:
+                files.append(os.path.join(r, file))
+    return files
+
+
+def pruneFileList(filelist, year):
+    """
+    Return a pruned list of files, valid after a certain year
+    """
+    now = datetime.datetime.now()
+    files = []
+    for f in filelist:
+        # if the 2 digit year is greater than the prune year AND lesseq than current year
+        if int(f[-15:-13]) >= year and int(f[-15:-13]) <= now.year % 100:
+            files.append(f)
+    return files
+
+
+def sortFiles(paths):
+    """
+    Return List of files sorted by getctime
+    """
+    return paths.sort(key=os.path.getctime)
+
+def returnMostRecent(paths):
+    """
+    Return the most recent file in the files list
+    """
+    return max(paths, key=os.path.getctime)
+
 
 class sdbFile:
-    '''
+    """
     Class for an hour of sdbobservation
-    '''
+    """
 
     def __init__(self, path):
-        '''
+        """
         The times of the file based on the filename string
-        '''
+        """
         self.path = path
         self.filename = path[-15:]
         self.date = path[-15:-7]
@@ -116,13 +170,12 @@ class sdbFile:
         os.system(command)
 
 
-
     def primeScratch(self):
-        '''
+        """
         Create scratchdir
         Create outputdir
         Prime the scratchdir with the sdb file
-        '''
+        """
         command = "mkdir " + config['DEFAULT']['scratchdir'] + "/" + self.date
         print(command)
         os.system(command)
@@ -138,11 +191,11 @@ class sdbFile:
 
 
     def sdbParse(self):
-        '''
+        """
         Parse the CSV output file of Std, once run through the VM (see bin/runStd.sh)
         Some CSV files will be empty (no datums values during that hour) and are
         removed before conversion to FLX files.
-        '''
+        """
 
 
         dir = config['DEFAULT']['outputdir'] + "/" + self.date
@@ -207,3 +260,35 @@ class sdbFile:
             file.write("\n")
             for item in lines:
                 file.write("%s\n" % item)
+
+
+
+    def testImport(self):
+        """
+        Test that data exists for the hour of imports.
+        This is done using the influxDB python client
+        - Connect
+        - Run a count query which returns the numbers of datums.
+        """
+
+        # client = InfluxDBClient(host='localhost', port=8086)
+
+        # Create a partial datestring as YY-MM-DD HH:
+        dateStr = self.year  + "-" \
+                + self.month + "-" \
+                + self.day   + " " \
+                + self.hour  + ":"
+        print (dateStr)
+
+        # Create query using partial datestring. Returns the count of weather reading taking out first and last 30 seconds of the hour.
+        queryStr = "SELECT count(*) from \"sdbfull\".\"autogen\".\"sdbfull\" WHERE time > \\'20" + dateStr + "00:30\\' and time < \\'20" + dateStr + "59:30\\'"
+        print(queryStr)
+
+        # result set returned. Will be empty if no data.
+        rs = client.query(queryStr)
+
+        # if data exists
+        if rs:
+            return True
+        else:
+            return False

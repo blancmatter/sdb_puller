@@ -17,6 +17,7 @@ In order to spoeed up ingestion, work is taking place on
   * import datetime
   * import glob, os
   * import re
+  * import influxdb
 * An installation of InfluxDB with influx CLI tool
 * VirtualBox
 * Vagrant
