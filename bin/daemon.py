@@ -76,9 +76,6 @@ class Daemon:
                 try:
 
                         pf = open(self.pidfile,'r')
-                        print(pf)
-                        print(pf.read().strip())
-                        exit()
                         pid = int(pf.read().strip())
                         pf.close()
                 except IOError:

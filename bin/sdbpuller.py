@@ -129,7 +129,7 @@ class sdbFile:
         files.sort()
 
         for file in files:
-            command = "influx -import -path=" + file " > " +
+            command = "influx -import -path=" + file + " > " +
             config['DEFAULT']['logdir'] + self.date + "Std.log'"
             print(command)
             os.system(command)
