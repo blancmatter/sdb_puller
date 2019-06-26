@@ -133,11 +133,11 @@ class sdbFile:
             print(command)
             os.system(command)
 
-        if testImport():
+        if self.testImport():
             command = "echo " + self.filename + " >> " + config['DEFAULT']['logfile']
             os.system(command)
         else:
-            createErrorLog()
+            self.createErrorLog()
 
 
 
