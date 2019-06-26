@@ -9,12 +9,12 @@ def _main():
     """
 
     # Deamonize process
-    sp.daemonize()
+    # sp.daemonize()
 
 
     while True:
         files = sp.getFileList('/sdb')
-        mostRecent = sp.returnMostRecent(files))
+        mostRecent = sp.returnMostRecent(files)
         print(mostRecent)
         if not sp.fileExists(mostRecent):
             time.sleep(30) # make sure any writes have finished to filesystem
