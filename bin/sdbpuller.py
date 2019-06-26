@@ -14,59 +14,13 @@ iniFile = fileDir + '/sdbpuller.ini' # should always be in the same dir as this 
 config = configparser.ConfigParser()
 config.read(iniFile)
 
-def daemonize(self):
-    """
-    do the UNIX double-fork magic, see Stevens' "Advanced
-    Programming in the UNIX Environment" for details (ISBN 0201563177)
-    http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16e
-    Taken from https://franklingu.github.io/programming/
-    2016/03/01/creating-daemon-process-python-example-explanation/
-    """
-    try:
-            pid = os.fork()
-            if pid > 0:
-                    # exit first parent
-                    sys.exit(0)
-    except OSError as e:
-            sys.stderr.write("fork #1 failed: %d (%s)\n" % (e.errno, e.strerror))
-            sys.exit(1)
-
-    # decouple from parent environment
-    os.chdir("/")
-    os.setsid()
-    os.umask(0)
-
-    # do second fork
-    try:
-            pid = os.fork()
-            if pid > 0:
-                    # exit from second parent
-                    sys.exit(0)
-    except OSError as e:
-            sys.stderr.write("fork #2 failed: %d (%s)\n" % (e.errno, e.strerror))
-            sys.exit(1)
-
-    # redirect standard file descriptors
-    sys.stdout.flush()
-    sys.stderr.flush()
-    si = file(self.stdin, 'r')
-    so = file(self.stdout, 'a+')
-    se = file(self.stderr, 'a+', 0)
-    os.dup2(si.fileno(), sys.stdin.fileno())
-    os.dup2(so.fileno(), sys.stdout.fileno())
-    os.dup2(se.fileno(), sys.stderr.fileno())
-
-    # write pidfile
-    atexit.register(self.delpid)
-    pid = str(os.getpid())
-    file(self.pidfile,'w+').write("%s\n" % pid)
 
 
 def fileExists(path):
     """
     Check if a filename exists in the import log
     Exists return True
-    Noextists return False
+    !Exists return False
     """
     file = path[-15:]
 
@@ -146,8 +100,7 @@ class sdbFile:
 
 
     def callStd(self):
-
-        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + " > /dev/null 2>&1" + "'"
+        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + " > " + config['DEFAULT']['logdir'] + self.date + "Std.log'"
         print(command)
         os.system(command)
 
@@ -160,6 +113,14 @@ class sdbFile:
         print(command)
         os.system(command)
 
+    def createErrorLog(self):
+        """
+        tar up the scratch and output dirs into the logdir
+        will allow further analysis of what went wrong!
+        """
+        command = "tar -cvf " + config['DEFAULT']['logdir'] + self.date + "_error.tar " + config['DEFAULT']['outputdir'] + " " + config['DEFAULT']['scratchdir']
+
+
 
     def importFlx(self):
         dir = config['DEFAULT']['outputdir'] + "/" + self.date
@@ -168,13 +129,17 @@ class sdbFile:
         files.sort()
 
         for file in files:
-            command = "influx -import -path=" + file
+            command = "influx -import -path=" + file " > " +
+            config['DEFAULT']['logdir'] + self.date + "Std.log'"
             print(command)
             os.system(command)
 
+        if testImport():
+            command = "echo " + self.filename + " >> " + config['DEFAULT']['logfile']
+            os.system(command)
+        else:
+            createErrorLog()
 
-        command = "echo " + self.filename + " >> " + config['DEFAULT']['logfile']
-        os.system(command)
 
 
     def primeScratch(self):
@@ -203,7 +168,6 @@ class sdbFile:
         Some CSV files will be empty (no datums values during that hour) and are
         removed before conversion to FLX files.
         """
-
 
         dir = config['DEFAULT']['outputdir'] + "/" + self.date
         os.chdir(dir)
