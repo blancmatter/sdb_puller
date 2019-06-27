@@ -1,34 +1,55 @@
 #!/usr/bin/env python3
+import configparser
+from daemon import Daemon
 import sdbpuller as sp
-import sys, time
+import sys, os, time
 
 
-def _main():
-    """
-    daemon to run on sdbinflux
-    """
+# Locate and read in the config file
+fileDir = os.path.dirname(os.path.abspath(__file__))
+iniFile = fileDir + '/sdbpuller.ini' # should always be in the same dir as this file.
+config = configparser.ConfigParser()
+config.read(iniFile)
 
-    # Deamonize process
-    # sp.daemonize()
+#set the daemon pid file path
+pidfile = config['DEFAULT']['dpiddir'] + "importd.pid"
 
 
-    while True:
-        files = sp.getFileList('/sdb')
-        mostRecent = sp.returnMostRecent(files)
-        print(mostRecent)
-        if not sp.fileExists(mostRecent):
-            time.sleep(30) # make sure any writes have finished to filesystem
-            sdb = sp.sdbFile(mostRecent)
-            sdb.primeScratch()
-            sdb.callStd()
-            sdb.sdbParse()
-            sdb.importFlx()
-            sdb.cleanUp()
-            del sdb
+class MyDaemon(Daemon):
+        def run(self):
+            """
+            This is the daemonised process block
+            """
+            while True:
+                files = sp.getFileList(config['DEAFULT']['sdbdir'])
+                mostRecent = sp.returnMostRecent(files)
+                print(mostRecent)
+                if not sp.fileExists(mostRecent):
+                    time.sleep(30) # make sure any writes have finished to filesystem
+                    sdb = sp.sdbFile(mostRecent)
+                    sdb.primeScratch()
+                    sdb.callStd()
+                    sdb.sdbParse()
+                    sdb.importFlx()
+                    sdb.cleanUp()
+                    del sdb
+                else:
+                    time.sleep(120)
+
+
+if __name__ == "__main__":
+        daemon = MyDaemon(pidfile)
+        if len(sys.argv) == 2:
+                if 'start' == sys.argv[1]:
+                        daemon.start()
+                elif 'stop' == sys.argv[1]:
+                        daemon.stop()
+                elif 'restart' == sys.argv[1]:
+                        daemon.restart()
+                else:
+                        print("Unknown command")
+                        sys.exit(2)
+                sys.exit(0)
         else:
-            time.sleep(120)
-
-
-
-if __name__ == '__main__':
-    _main()
+                print ("usage: %s start|stop|restart" % sys.argv[0])
+                sys.exit(2)

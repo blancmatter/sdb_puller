@@ -1,7 +1,8 @@
 import configparser
 import csv
 import datetime
-import glob, os
+import glob
+import os
 import re
 from influxdb import InfluxDBClient
 
