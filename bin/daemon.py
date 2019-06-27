@@ -26,7 +26,7 @@ class Daemon:
         Programming in the UNIX Environment" for details (ISBN 0201563177)
         http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
         """
-        print("daemonising")
+
         try:
             pid = os.fork()
             if pid > 0:
@@ -36,39 +36,38 @@ class Daemon:
             sys.stderr.write("fork #1 failed: %d (%s)\n" % (e.errno, e.strerror))
             sys.exit(1)
 
-            # decouple from parent environment
-            os.chdir("/")
-            os.setsid()
-            os.umask(0)
+        # decouple from parent environment
+        os.chdir("/")
+        os.setsid()
+        os.umask(0)
 
-            # do second fork
-            try:
-                pid = os.fork()
-                if pid > 0:
-                    # exit from second parent
-                    sys.exit(0)
-            except OSError as e:
-                sys.stderr.write("fork #2 failed: %d (%s)\n" % (e.errno, e.strerror))
-                sys.exit(1)
+        # do second fork
+        try:
+            pid = os.fork()
+            if pid > 0:
+                # exit from second parent
+                sys.exit(0)
+        except OSError as e:
+            sys.stderr.write("fork #2 failed: %d (%s)\n" % (e.errno, e.strerror))
+            sys.exit(1)
 
-            # redirect standard file descriptors
-            print("daemonising")
-            sys.stdout.flush()
-            sys.stderr.flush()
-            si = open(self.stdin, 'r')
-            so = open(self.stdout, 'a+')
-            se = open(self.stderr, 'a+')
-            print("daemonising")
-            os.dup2(si.fileno(), sys.stdin.fileno())
-            os.dup2(so.fileno(), sys.stdout.fileno())
-            os.dup2(se.fileno(), sys.stderr.fileno())
-            print("daemonising")
-            # write pidfile
-            atexit.register(self.delpid)
-            pid = str(os.getpid())
-            print("opening PID file with PID: ", pid)
-            pidfile = open(self.pidfile,'w+')
-            pidfile.write("%s\n" % pid)
+        # redirect standard file descriptors
+
+        sys.stdout.flush()
+        sys.stderr.flush()
+        si = open(self.stdin, 'r')
+        so = open(self.stdout, 'a+')
+        se = open(self.stderr, 'a+')
+        os.dup2(si.fileno(), sys.stdin.fileno())
+        os.dup2(so.fileno(), sys.stdout.fileno())
+        os.dup2(se.fileno(), sys.stderr.fileno())
+
+        # write pidfile
+        atexit.register(self.delpid)
+        pid = str(os.getpid())
+        print("opening PID file with PID: ", pid)
+        pidfile = open(self.pidfile,'w+')
+        pidfile.write("%s\n" % pid)
 
     def delpid(self):
         os.remove(self.pidfile)
