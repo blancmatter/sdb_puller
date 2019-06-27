@@ -101,7 +101,8 @@ class sdbFile:
 
 
     def callStd(self):
-        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + " > " + config['DEFAULT']['logdir'] + self.date + "Std.log'"
+        # Call Vagrant machine to call runStd outputting stdout and stderr to logfile
+        command = "cd /sdb_puller/ && vagrant ssh -c '/sdb_puller/bin/runStd.sh " + self.year + " " + self.month + " " + self.day + " " + self.hour + " " + self.hour1 + " > " + config['DEFAULT']['logdir'] + self.date + "Std.log 2>&1'"
         print(command)
         os.system(command)
 
@@ -130,7 +131,7 @@ class sdbFile:
         files.sort()
 
         for file in files:
-            command = "influx -import -path=" + file + " > " + config['DEFAULT']['logdir'] + self.date + "Std.log'"
+            command = "influx -import -path=" + file + " >> " + config['DEFAULT']['logdir'] + self.date + "Std.log'"
             print(command)
             os.system(command)
 
