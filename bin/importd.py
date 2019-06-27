@@ -25,7 +25,8 @@ class MyDaemon(Daemon):
             mostRecent = sp.returnMostRecent(files)
             print(mostRecent)
             if not sp.fileExists(mostRecent):
-                time.sleep(30) # make sure any writes have finished to filesystem
+                # make sure any writes have finished to filesystem
+                time.sleep(30)
                 sdb = sp.sdbFile(mostRecent)
                 sdb.primeScratch()
                 sdb.callStd()
@@ -34,6 +35,7 @@ class MyDaemon(Daemon):
                 sdb.cleanUp()
                 del sdb
             else:
+                # wait 2 mins before checking again
                 time.sleep(120)
 
 
