@@ -21,7 +21,6 @@ class MyDaemon(Daemon):
         This is the daemonised process block
         """
         while True:
-            """
             files = sp.getFileList(config['DEFAULT']['sdbdir'])
             mostRecent = sp.returnMostRecent(files)
             print(mostRecent)
@@ -37,8 +36,7 @@ class MyDaemon(Daemon):
                 del sdb
             else:
                 # wait 2 mins before checking again
-            """
-            time.sleep(120)
+                time.sleep(120)
 
 
 if __name__ == "__main__":
