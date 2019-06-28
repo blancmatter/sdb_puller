@@ -4,16 +4,7 @@ import pdb
 import sdbpuller as sp
 
 
-sp.daemonize()
+import parset as ps
 
-
-while true:
-    time.sleep(120)
-
-"""
-
-files = sp.getFileList('/home/aridarno/Desktop')
-mostrecent = sp.returnMostRecent(files)
-
-print(mostrecent)
-"""
+file = ps.sdbFile(sys.argv[1])
+print (file.year)

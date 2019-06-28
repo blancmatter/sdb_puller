@@ -23,6 +23,8 @@ def fileExists(path):
     Exists return True
     !Exists return False
     """
+
+    # THIS NEEDS CHANGING
     file = path[-15:]
 
     with open(config['DEFAULT']['logfile']) as f:
@@ -38,13 +40,14 @@ def getFileList(path):
     Return a list of all sdb files in the directory structure
     """
     files = []
-    sdbRe = re.compile("\d\d\d\d\d\d\d\d.sdb.gz$")
+    sdbRe = re.compile("\d\d\d\d\d\d\d\d.(sdb|sdb.gz)$")
 
     # r=root, d=directories, f = files
     for r, d, f in os.walk(path):
         for file in f:
 
             if sdbRe.match(file):
+                print(file)
                 files.append(os.path.join(r, file))
     return files
 
@@ -106,6 +109,7 @@ class sdbFile:
         print(command)
         os.system(command)
 
+
     def cleanUp(self):
         os.chdir('/')
         command = "rm -rf " + config['DEFAULT']['outputdir'] + "/" + self.date
@@ -115,13 +119,13 @@ class sdbFile:
         print(command)
         os.system(command)
 
+
     def createErrorLog(self):
         """
         tar up the scratch and output dirs into the logdir
         will allow further analysis of what went wrong!
         """
         command = "tar -cvf " + config['DEFAULT']['logdir'] + self.date + "_error.tar " + config['DEFAULT']['outputdir'] + " " + config['DEFAULT']['scratchdir']
-
 
 
     def importFlx(self):
