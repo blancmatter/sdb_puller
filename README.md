@@ -115,7 +115,7 @@ exit 0
 ## Key files
 
 The key files are;
-* [bin/importd.py](bin/importd.py) -
+* [bin/importd.py](bin/importd.py) - daemon using daemon.py module to automatically import new sdb data when it comes from the telescope site each hour.
 
 * [bin/sdbpuller.py](bin/sdbpuller.py) - Contains sdbFile class with methods to prep scratch directories, parse csv output into influx importable ASCII files and call the influx import.
 
