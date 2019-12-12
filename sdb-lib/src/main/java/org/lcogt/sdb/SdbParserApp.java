@@ -5,18 +5,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
+
 import org.lcogt.sdb.core.SdbDatum;
 import org.lcogt.sdb.core.SdbFile;
-import org.lcogt.sdb.database.MySQLDatabase;
 import org.lcogt.sdb.exception.SdbException;
 
 /**
  * Application to parse Sdb files - specified by -Ddatafile="<i>filename</i>"
  * and upload into a MySQL database.
- * 
+ *
  * This application:-
- * 
+ *
  * <UL>
  * <LI>Creates a temporary file.
  * <LI>Opens Sdb File
@@ -24,35 +23,34 @@ import org.lcogt.sdb.exception.SdbException;
  * MySQL <code>LOAD INFILE</code> format.
  * <LI>Closes Sdb file.
  * </UL>
- * 
+ *
  * @version $Id: SdbParserApp.java 7674 2008-11-20 23:41:22Z mnorbury $
  * @author mnorbury
  * @see MySQLDatabase
- * 
+ *
  */
 public class SdbParserApp
 {
 
 	/** Class scope logger */
-	private static Logger logger = Logger.getLogger(SdbParserApp.class);
+
 
 	public static void main(String[] args)
 	{
 		String datafile = System.getProperty("datafile",
-				"src/test/resources/08092021.sdb");
-
-		logger.info("data path set to " + datafile);
+				"src/test/resources/19121002.sdb");
 
 		try
 		{
 			/* Create a temporary file */
-			File tempfile = File.createTempFile("SdbParser", ".dat");
-			tempfile.createNewFile();
-			tempfile.deleteOnExit();
+		   File tempfile = new File("SdbParser.dat");
+         if(tempfile.createNewFile()){
+            System.out.println("file.txt File Created in Project root directory");
+         }else System.out.println("File file.txt already exists in the project root directory");
+			System.out.print("Created Temp File? ");
 			FileOutputStream fos = new FileOutputStream(tempfile);
 			BufferedOutputStream bos = new BufferedOutputStream(fos);
 
-			logger.info("Created temporary file " + tempfile.getAbsolutePath());
 
 			/* Open Sdb file */
 			SdbFile sdbfile = new SdbFile(datafile);
@@ -69,11 +67,7 @@ public class SdbParserApp
 			/* Close input stream */
 			sdbfile.closeFile();
 
-			logger.info("Read " + count + " records");
 
-			/* Insert into database */
-			MySQLDatabase dbinstance = MySQLDatabase.getInstance();
-			dbinstance.loadSdbFile(tempfile);
 		}
 		catch (SdbException e)
 		{

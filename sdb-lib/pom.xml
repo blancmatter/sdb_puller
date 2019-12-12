@@ -6,7 +6,7 @@
 	<version>0.1.2-SNAPSHOT</version>
 	<description>Library for extracting Sdb data.</description>
 
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

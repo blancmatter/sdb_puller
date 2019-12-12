@@ -8,22 +8,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 
-import org.apache.log4j.Logger;
 import org.lcogt.sdb.exception.SdbException;
 import org.lcogt.sdb.exception.SdbFileNotFoundException;
 
 /**
  * Class to load and parse an Sdb file.
- * 
+ *
  * @version $Id: SdbFile.java 7674 2008-11-20 23:41:22Z mnorbury $
  * @author mnorbury
- * 
+ *
  */
 public class SdbFile
 {
 
 	/** Class scope logger */
-	private static Logger logger = Logger.getLogger(SdbFile.class);
 
 	/** Sdb file timeoffset unixtime (seconds) */
 	private int timeoffset;
@@ -39,7 +37,7 @@ public class SdbFile
 
 	/**
 	 * Open an Sdb file.
-	 * 
+	 *
 	 * @param fileuri
 	 * @throws SdbFileNotFoundException
 	 */
@@ -58,11 +56,10 @@ public class SdbFile
 			/* Read in Sdb time offset */
 			timeoffset = swapEndian(dis.readInt());
 
-			logger.debug("Opened sdb file " + sdbfile);
-			logger.debug("Timeoffset = " + timeoffset);
+
 			Calendar calinstance = Calendar.getInstance();
 			calinstance.setTimeInMillis(((long) timeoffset) * 1000);
-			logger.debug("Got timestamp " + calinstance.getTime().toString());
+
 		}
 		catch (FileNotFoundException e)
 		{
